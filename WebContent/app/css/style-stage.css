@@ -139,7 +139,7 @@
 	width: 365; height: 240;
 	background-image: url("../img/game/boulangerie/muffin/muffin-0.png");
 }
-.element.muffin.saut-1 {
+.element.muffin.saut {
 	background-image: url("../img/game/boulangerie/muffin/muffin-1.png");
 }
 .element.muffin.saut-2 {

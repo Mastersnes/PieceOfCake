@@ -15,7 +15,11 @@ define(["jquery"], function($){
 			  {id: "niche-baguette", x: 1450, y: 100},
 			  {id: "niche-vide1", x: 1100, y: 300},
 			  {id: "niche-vide2", x: 1300, y: 300},
-			  {id: "etagere-pain", x: 2000, y: 250}
+			  {id: "lustre", x: 1800, y: 0},
+			  {id: "etagere-pain", x: 2000, y: 250},
+			  {id: "niche-vide1", x: 2500, y: 100},
+			  {id: "niche-vide2", x: 2700, y: 150},
+			  {id: "etagere-pain", x: 3300, y: 200}
 			],
 			"elements" : [
 			  {id: "eclair-choco", x: -30, y: 455},
@@ -28,7 +32,17 @@ define(["jquery"], function($){
 			  {id: "eclair-fraise", x: 1700, y: 460},
 			  {id: "eclair-fraise", x: 1850, y: 410},
 			  {id: "eclair-fraise", x: 2000, y: 350},
-			  {id: "muffin", x: 2100, y: 400}
+			  {id: "muffin", x: 2100, y: 400},
+			  {id: "muffin", x: 2260, y: 350},
+			  {id: "muffin", x: 2440, y: 300},
+			  {id: "muffin", x: 2620, y: 250},
+			  {id: "muffin", x: 2800, y: 200},
+			  {id: "muffin", x: 3100, y: 220},
+			  {id: "macaron", x: 3500, y: 500},
+			  {id: "eclair-vanille", x: 3700, y: 500},
+			  {id: "eclair-vanille", x: 3900, y: 500},
+			  {id: "eclair-vanille", x: 4100, y: 500},
+			  {id: "eclair-cafe", x: 4400, y: 500}
 			]
 		}
 	};

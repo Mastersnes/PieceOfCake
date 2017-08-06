@@ -43,7 +43,10 @@ define(
 				this.refresh = function() {
 					this.delay["refresh"] ++;
 					var tick = false;
-					if (this.delay["refresh"] > 2) {
+					var delayMax = 1;
+					if (this.moveEngine.cours) delayMax = 2;
+					
+					if (this.delay["refresh"] > delayMax) {
 						this.delay["refresh"] = 0;
 						tick = true;
 					}

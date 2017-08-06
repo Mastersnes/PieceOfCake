@@ -71,9 +71,10 @@ function($, _, Utils, Stages, PlayerView) {
 			// On calcul la position relative du joueur par rapport au stage
 			var playerXR = playerX + stageX;
 			
-			if (playerXR > Utils.percent(screenW, 60)) {
+			if (playerXR > Utils.percent(screenW, 50)) {
+				var incr = playerXR - Utils.percent(screenW, 50);
 				$(".game").css({
-					left : "-=5px"
+					left : "-="+incr+"px"
 				});
 			}else if (playerXR < Utils.percent(screenW, 30)) {
 				if (stageX < 0) {

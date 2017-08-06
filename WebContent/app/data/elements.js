@@ -4,7 +4,7 @@ define(["jquery"], function($){
 		/**
 		 * Plateformes
 		 */
-		"eclair-choco" : {
+		"eclair-choco" : { // Ralenti
 			useY : function(player) {
 				player.moveEngine.changeVitesse = 0.2;
 			},
@@ -12,49 +12,125 @@ define(["jquery"], function($){
 				player.moveEngine.changeVitesse = 0;
 			}
 		},
-		"eclair-cafe" : {},
-		"eclair-vanille" : {
+		"eclair-cafe" : {
 			useY : function(player) {
-				player.moveEngine.changeVitesse = 1.5;
+				var dom = this.dom;
+				var move = dom.attr("move");
+				if (move == undefined) {
+					dom.attr("lastTop", dom.position().top);
+					move = -1;
+				}
+				var lastTop = parseInt(dom.attr("lastTop"));
+				if (move < 0) {
+					dom.attr("move", 0);
+					dom.animate({
+						top : (lastTop+20)
+					}, "slow", function() {
+						dom.attr("move", 1);
+					});
+				}else if (move > 0) {
+					dom.attr("move", 0);
+					dom.animate({
+						top : (lastTop-20)
+					}, "slow", function() {
+						dom.attr("move", -1);
+					});
+				}
+			},
+			reset : function(player) {
+				var dom = this.dom;
+				dom.removeAttr("move");
+				var lastTop = dom.attr("lastTop");
+				if (lastTop) {
+					dom.css({
+						top : lastTop
+					});
+				}
+			}
+		}, // RIEN
+		"eclair-vanille" : { // GLISSE
+			useY : function(player) {
+				var dom = this.dom;
+				dom.attr("boost", true);
+				player.moveEngine.changeVitesse = 2;
 				player.flag.move = player.moveEngine.marche.direction;
 			},
 			reset : function(player) {
 				player.moveEngine.changeVitesse = 0;
 			}
 		},
-		"eclair-fraise" : {
+		"eclair-fraise" : { // TOMBE
 			useY : function(player) {
 				var dom = this.dom;
 				var index = dom.attr("index");
 				if (player.delay["eclair-fraise"+index] == undefined) player.delay["eclair-fraise"+index] = 0;
 				
 				var delay = ++player.delay["eclair-fraise"+index];
-				if (delay >= 10) {
+				if (!dom.hasClass("shake")) dom.addClass("shake");
+				
+				if (delay == 15) {
 					dom.attr("lastTop", dom.position().top);
 					dom.animate({
-						top : "1000px"
-					});
+						top : "1500px"
+					}, 1000);
 				}
 			},
 			reset : function(player) {
 				var dom = this.dom;
 				var index = dom.attr("index");
 				player.delay["eclair-fraise"+index] = 0;
+				dom.removeClass("shake");
 				var lastTop = dom.attr("lastTop");
 				if (lastTop) {
+					dom.removeAttr("lastTop");
 					dom.animate({
 						top : lastTop
 					});
 				}
 			}
 		},
-		"choux" : {},
-		"macaron" : {
+		"choux" : {
+			useY : function(player) {
+				var dom = this.dom;
+				var move = dom.attr("move");
+				if (move == undefined) {
+					dom.attr("lastTop", dom.position().top);
+					move = -1;
+				}
+				
+				if (move < 0) {
+					dom.attr("move", 0);
+					dom.animate({
+						top : "+=10px"
+					}, "slow", function() {
+						dom.attr("move", 1);
+					});
+				}else if (move > 0) {
+					dom.attr("move", 0);
+					dom.animate({
+						top : "-=10px"
+					}, "slow", function() {
+						dom.attr("move", -1);
+					});
+				}
+			},
+			reset : function(player) {
+				var dom = this.dom;
+				dom.removeAttr("move");
+				var lastTop = dom.attr("lastTop");
+				if (lastTop) {
+					dom.css({
+						top : lastTop
+					});
+				}
+			}
+		},
+		"macaron" : { // REBONDIT
 			useY : function(player) {
 				if (player.flag.sautAllowed) player.flag.saute = -1.75;
 			}
 		},
-		"muffin" : {
+		"muffin" : { // EXPLOSE
 			hitbox : {
 				x : 94,
 				y : 80,
@@ -64,13 +140,13 @@ define(["jquery"], function($){
 			useY : function(player) {
 				var dom = this.dom;
 				var index = dom.attr("index");
-				if (player.delay["muffin"+index] == undefined) player.delay["muffin"+index] = 0;
+				if (player.delay["muffin"+index] == undefined) player.delay["muffin"+index] =0;
 				
 				var delay = ++player.delay["muffin"+index];
 				if (delay >= 10) {
 					player.delay["muffin"+index] = 0;
 					var saut = dom.attr("saut");
-					if (!saut) saut = 0;
+					if (!saut) saut = 1;
 					saut++;
 					
 					dom.attr("saut", saut);

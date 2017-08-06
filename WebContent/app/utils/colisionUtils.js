@@ -41,12 +41,14 @@ define(["jquery", "app/data/elements"], function($, ElementsData){
 				
 				if (x1 + w1 > x2 && x1 < x2 + w2) { // Collision X potentiel
 					if (y0 + h1 > y2 && y0 < y2 + h2) { //Collision X certaine
+						console.log("colisionx");
 						colision.x = element;
 					}
 				}
 				if (y1 + h1 > y2 && y1 < y2 + h2) { //Collision Y potentiel
 					if (x0 + w1 > x2 && x0 < x2 + w2) { // Collision Y certaine
 						colision.y = element;
+						colision.y.haute = y1 > y2;
 					}
 				}
 				
@@ -65,7 +67,7 @@ define(["jquery", "app/data/elements"], function($, ElementsData){
 			
 			if (!colision.x) start.x += move.x;
 			if (!colision.y) start.y += move.y;
-			else {
+			else if (!colision.y.haute) {
 				var dom = colision.y.dom;
 				if (dom && dom.position) {
 					var y2 = dom.position().top;
@@ -73,7 +75,7 @@ define(["jquery", "app/data/elements"], function($, ElementsData){
 						y2 = y2 + colision.y.hitbox.y;
 					}
 					
-					start.y = y2 - 50;
+					start.y = y2 - 58;
 				}
 			}
 			return colision;
