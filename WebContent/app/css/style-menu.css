@@ -1,0 +1,60 @@
+/**
+* Menu
+**/
+.menu-page {
+	background-image: url("../img/menu/menu-fond.jpg");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+.menu-cadre {
+	width: 75%;
+	height: 80%;
+}
+.menu-logo {
+	width: 100%;
+	height: 30%;
+	
+	background-image: url("../img/menu/menu-logo.png");
+	background-repeat: no-repeat;
+	background-size: auto 100%;
+	background-position: 50%;
+}
+
+ul.menu {
+	display: block;
+}
+ul.menu > li {
+	display: block;
+	text-align: center;
+	font-size: 2em;
+	font-family: fantasy;
+	
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+}
+ul.menu > li:nth-child(n+2)  {
+	margin-top: 2%;
+}
+
+ul.menu > li {
+	cursor: pointer;
+	
+	border-radius: 100px;
+	-webkit-border-radius: 100px;
+	-moz-border-radius: 100px;
+	
+	position: relative;
+	
+	-webkit-transition: background 2s;
+	transition: background 2s;
+}
+
+ul.menu > li:hover {
+	background: #f2f9fe;
+	background: linear-gradient(top, #f2f9fe 5%, #d6f0fd 100%);
+	background: -webkit-linear-gradient(top, #f2f9fe 5%, #d6f0fd 100%);
+	background: -moz-linear-gradient(top, #f2f9fe 5%, #d6f0fd 100%);
+	background: -ms-linear-gradient(top, #f2f9fe 5%, #d6f0fd 100%);
+	background: -o-linear-gradient(top, #f2f9fe 5%, #d6f0fd 100%);
+}

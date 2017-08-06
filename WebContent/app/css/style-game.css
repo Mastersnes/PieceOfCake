@@ -1,0 +1,84 @@
+
+/**
+* Game
+**/
+.plan {
+	position: absolute;
+	width: 100000%;
+	height: 100%;
+}
+.plan.background {
+	z-index: -2;
+	background-repeat: repeat-x;
+	background-size: auto 100%;
+}
+.plan.stage {
+	z-index: 0;
+}
+.plan.frontground {
+	z-index: 1;
+	background-repeat: repeat-x;
+	background-size: auto 100%;
+}
+
+.element {
+	position: absolute;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+.back {
+	z-index: -1;
+	position: absolute;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+/**
+* Player
+**/
+.player {
+	width: 45; height: 70;
+	background-image: url("../img/game/perso/stop.png");
+}
+.player.marche-0 {
+	background-image: url("../img/game/perso/stop.png");
+}
+.player.marche-1 {
+	background-image: url("../img/game/perso/marche/1.png");
+}
+.player.marche-2 {
+	background-image: url("../img/game/perso/marche/2.png");
+}
+.player.marche-3 {
+	background-image: url("../img/game/perso/marche/3.png");
+}
+.player.cours-0 {
+	background-image: url("../img/game/perso/stop.png");
+}
+.player.cours-1 {
+	background-image: url("../img/game/perso/course/1.png");
+}
+.player.cours-2 {
+	background-image: url("../img/game/perso/course/2.png");
+}
+.player.cours-3 {
+	background-image: url("../img/game/perso/course/3.png");
+}
+.player.saute {
+	background-image: url("../img/game/perso/course/2.png") !important;
+}
+
+/**
+* Utils
+**/
+.preload {
+	position: absolute;
+	left: -9999px;
+	top : -9999px;
+}
+.hitbox {
+	position: absolute;
+	z-index: 10000;
+	background-color: red;
+	opacity : 0.5;
+}

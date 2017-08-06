@@ -1,0 +1,153 @@
+/**
+* Boulangerie
+**/
+.plan.background.boulangerie {
+	background-image: url("../img/game/boulangerie/background.jpg");	
+}
+.plan.frontground.boulangerie {
+	background-image: url("../img/game/boulangerie/frontground.png");	
+}
+
+/**
+* Element d'arriere plan
+**/
+.back.etagere-vide {
+	width: 250; height: 215;
+	background-image: url("../img/game/boulangerie/back/etagere-vide.png");
+	background-size: 100% 100%;
+}
+.back.etagere {
+	width: 250; height: 215;
+	background-image: url("../img/game/boulangerie/back/etagere.png");
+	background-size: 100% 100%;
+}
+.back.etagere-pain {
+	width: 250; height: 60;
+	background-image: url("../img/game/boulangerie/back/etagere-pain.png");
+	background-size: 100% 100%;
+}
+.back.niche-baguette {
+	width: 250; height: 215;
+	background-image: url("../img/game/boulangerie/back/niche-baguette.png");
+	background-size: 100% 100%;
+}
+.back.niche-pain {
+	width: 250; height: 215;
+	background-image: url("../img/game/boulangerie/back/niche-pain.png");
+	background-size: 100% 100%;
+}
+.back.niche-vide {
+	width: 250; height: 215;
+	background-image: url("../img/game/boulangerie/back/niche-vide.png");
+	background-size: 100% 100%;
+}
+.back.niche-vide1 {
+	width: 250; height: 215;
+	background-image: url("../img/game/boulangerie/back/niche-vide1.png");
+	background-size: 100% 100%;
+}
+.back.niche-vide2 {
+	width: 250; height: 215;
+	background-image: url("../img/game/boulangerie/back/niche-vide2.png");
+	background-size: 100% 100%;
+}
+.back.lustre {
+	width: 220; height: 220;
+	background-image: url("../img/game/boulangerie/back/lustre.png");
+	background-size: 100% 100%;
+}
+
+/**
+* Elements de premier plan
+**/
+/**
+* Eclair au chocolat
+**/
+.element.eclair-choco {
+	width: 200; height: 50;
+	background-image: url("../img/game/boulangerie/eclairs/eclair-choco.png");
+}
+.element.eclair-choco.saut {
+	background-image: url("../img/game/boulangerie/eclairs/eclair-choco-saut.png");
+}
+/**
+* Eclair au café
+**/
+.element.eclair-cafe {
+	width: 200; height: 50;
+	background-image: url("../img/game/boulangerie/eclairs/eclair-cafe.png");
+}
+.element.eclair-cafe.saut {
+	background-image: url("../img/game/boulangerie/eclairs/eclair-cafe-saut.png");
+}
+/**
+* Eclair a la vanille
+**/
+.element.eclair-vanille {
+	width: 200; height: 50;
+	background-image: url("../img/game/boulangerie/eclairs/eclair-vanille.png");
+}
+.element.eclair-vanille.saut {
+	background-image: url("../img/game/boulangerie/eclairs/eclair-vanille-saut.png");
+}
+/**
+* Eclair a la fraise
+**/
+.element.eclair-fraise {
+	width: 200; height: 50;
+	background-image: url("../img/game/boulangerie/eclairs/eclair-fraise.png");
+}
+.element.eclair-fraise.saut {
+	background-image: url("../img/game/boulangerie/eclairs/eclair-fraise-saut.png");
+}
+/**
+* Choux
+**/
+.element.choux {
+	width: 115; height: 50;
+	background-image: url("../img/game/boulangerie/choux.png");
+}
+.element.choux.saut {
+	background-image: url("../img/game/boulangerie/choux-saut.png");
+}
+/**
+* Macaron
+**/
+.element.macaron {
+	width: 160; height: 145;
+	background-image: url("../img/game/boulangerie/macaron.png");
+}
+.element.macaron.saut {
+	background-image: url("../img/game/boulangerie/macaron-saut.png");
+}
+
+/**
+* Macaron
+**/
+.element.macaron {
+	width: 160; height: 145;
+	background-image: url("../img/game/boulangerie/macaron.png");
+}
+.element.macaron.saut {
+	background-image: url("../img/game/boulangerie/macaron-saut.png");
+}
+
+/**
+* Boom
+**/
+.element.muffin {
+	width: 365; height: 240;
+	background-image: url("../img/game/boulangerie/muffin/muffin-0.png");
+}
+.element.muffin.saut-1 {
+	background-image: url("../img/game/boulangerie/muffin/muffin-1.png");
+}
+.element.muffin.saut-2 {
+	background-image: url("../img/game/boulangerie/muffin/muffin-2.png");
+}
+.element.muffin.saut-3 {
+	background-image: url("../img/game/boulangerie/muffin/muffin-3.png");
+}
+.element.muffin.saut-4 {
+	background-image: url("../img/game/boulangerie/muffin/muffin-4.png");
+}
