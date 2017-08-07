@@ -151,3 +151,19 @@
 .element.muffin.saut-4 {
 	background-image: url("../img/game/boulangerie/muffin/muffin-4.png");
 }
+
+/**
+* Gateau fraise
+**/
+.element.gateau-fraise {
+	width: 170; height: 100;
+	background-image: url("../img/game/boulangerie/gateau-fraise/gateau.png");
+}
+.element.gateau-fraise.saut {
+	width: 170; height: 100;
+	background-image: url("../img/game/boulangerie/gateau-fraise/gateau-saut.png");
+}
+.element.fraise {
+	width: 35; height: 45;
+	background-image: url("../img/game/boulangerie/gateau-fraise/fraise.png");
+}

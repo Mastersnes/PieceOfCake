@@ -42,7 +42,6 @@ define(
 					}
 					return false;
 				};
-				
 
 				this.marche = {
 					anim : 0,

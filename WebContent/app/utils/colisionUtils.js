@@ -75,7 +75,7 @@ define(["jquery", "app/data/elements"], function($, ElementsData){
 						y2 = y2 + colision.y.hitbox.y;
 					}
 					
-					start.y = y2 - 58;
+					start.y = y2 - h1;
 				}
 			}
 			return colision;

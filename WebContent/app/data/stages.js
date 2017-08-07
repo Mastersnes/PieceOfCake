@@ -22,10 +22,12 @@ define(["jquery"], function($){
 			  {id: "etagere-pain", x: 3300, y: 200}
 			],
 			"elements" : [
-			  {id: "eclair-choco", x: -30, y: 455},
-			  {id: "eclair-fraise", x: 170, y: 455},
-			  {id: "eclair-cafe", x: 480, y: 455},
-			  {id: "choux", x: 700, y: 455},
+			  {id: "eclair-cafe", x: -30, y: 455},
+			  {id: "eclair-cafe", x: 170, y: 455},
+			  {id: "eclair-cafe", x: 270, y: 455},
+			  {id: "eclair-cafe", x: 470, y: 455},
+			  {id: "gateau-fraise", x: 700, y: 455},
+			  {id: "fraise", x: 770, y: 440},
 			  {id: "eclair-vanille", x: 900, y: 400},
 			  {id: "eclair-choco", x: 1200, y: 400},
 			  {id: "macaron", x: 1500, y: 500},

@@ -12,42 +12,7 @@ define(["jquery"], function($){
 				player.moveEngine.changeVitesse = 0;
 			}
 		},
-		"eclair-cafe" : {
-			useY : function(player) {
-				var dom = this.dom;
-				var move = dom.attr("move");
-				if (move == undefined) {
-					dom.attr("lastTop", dom.position().top);
-					move = -1;
-				}
-				var lastTop = parseInt(dom.attr("lastTop"));
-				if (move < 0) {
-					dom.attr("move", 0);
-					dom.animate({
-						top : (lastTop+20)
-					}, "slow", function() {
-						dom.attr("move", 1);
-					});
-				}else if (move > 0) {
-					dom.attr("move", 0);
-					dom.animate({
-						top : (lastTop-20)
-					}, "slow", function() {
-						dom.attr("move", -1);
-					});
-				}
-			},
-			reset : function(player) {
-				var dom = this.dom;
-				dom.removeAttr("move");
-				var lastTop = dom.attr("lastTop");
-				if (lastTop) {
-					dom.css({
-						top : lastTop
-					});
-				}
-			}
-		}, // RIEN
+		"eclair-cafe" : {}, // RIEN
 		"eclair-vanille" : { // GLISSE
 			useY : function(player) {
 				var dom = this.dom;
@@ -173,6 +138,34 @@ define(["jquery"], function($){
 				    return (className.match (/\bsaut-\S+/g) || []).join(' ');
 				});
 				dom.removeAttr("saut");
+			}
+		},
+		"gateau-fraise" : {}, // RIEN
+		"fraise" : { // BOUGE ET TUE
+			useY : function(player) {
+				player.flag.dead = true;
+			},
+			useX : function(player) {
+				player.flag.dead = true;
+			},
+			reset : function(player) {
+				var dom = this.dom;
+				if (dom.position().top == 0) return;
+				
+				var move = -3;
+				if (dom.attr("move")) move = dom.attr("move");
+				else {
+					dom.attr("move", move);
+					dom.attr("start", dom.position().top);
+				}
+				
+				var start = parseFloat(dom.attr("start"));
+				
+				dom.css({
+					top : "+="+move+"px"
+				});
+				if (dom.position().top < start - 100) dom.attr("move", 5);
+				else if (dom.position().top > start) dom.attr("move", -3);
 			}
 		}
 	};
