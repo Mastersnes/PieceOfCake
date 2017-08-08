@@ -4,22 +4,27 @@ define(["jquery", "app/data/elements"], function($, ElementsData){
 		/**
 		* Permet d'appeler un WS
 		**/
-		check : function(start, move, map, player) {
+		check : function(acceleration, position, map, player) {
 			var colision = {
 				x : false,
 				y : false
 			};
 			
-			var x0 = start.x + 20;
-			var x1 = x0 + move.x;
-			var y0 = start.y;
-			var y1 = start.y + move.y;
-			var w1 = $("#player").width() - 40;
-			var h1 = $("#player").height() - 20;
+			var move = {
+					x : 0,
+					y : 0
+			};
+			if (acceleration.x != 0) move.x = Math.abs(acceleration.x) / acceleration.x;
+			if (acceleration.y != 0) move.y = Math.abs(acceleration.y) / acceleration.y;
+			
+			var x0 = position.x + 20; var x1 = x0 + move.x;
+			var y0 = position.y; var y1 = y0 + move.y;
+			var w0 = $("#player").width(); var w1 = w0 - 40;
+			var h0 = $("#player").height(); var h1 = h0 - 20;
 			
 			$(".hitbox").css({
-				left : x0,
-				top : y0,
+				left : x1,
+				top : y1,
 				width : w1,
 				height : h1
 			});
@@ -31,24 +36,34 @@ define(["jquery", "app/data/elements"], function($, ElementsData){
 				var id = $(this).attr("id");
 				var element = ElementsData.get(id);
 				element.dom = $(this);
+				
 				var x2 = $(this).position().left; var y2 = $(this).position().top;
 				var w2 = $(this).width(); var h2 = $(this).height();
-				
 				if (element && element.hitbox) {
 					x2 = x2 + element.hitbox.x; y2 = y2 + element.hitbox.y;
 					w2 = element.hitbox.w; h2 = element.hitbox.h;
 				}
 				
-				if (x1 + w1 > x2 && x1 < x2 + w2) { // Collision X potentiel
-					if (y0 + h1 > y2 && y0 < y2 + h2) { //Collision X certaine
-						console.log("colisionx");
-						colision.x = element;
-					}
-				}
-				if (y1 + h1 > y2 && y1 < y2 + h2) { //Collision Y potentiel
+				if ((move.y != 0) && (y1 + h1 > y2 && y1 < y2 + h2)) { //Collision Y potentiel
 					if (x0 + w1 > x2 && x0 < x2 + w2) { // Collision Y certaine
 						colision.y = element;
-						colision.y.haute = y1 > y2;
+						if (y1 < y2) position.y = y2 - h1;
+						y0 = position.y;
+					}
+				}
+				
+				if (move.x != 0 && (x1 + w1 > x2 && x1 < x2 + w2)) { // Collision X potentiel
+					if (y0 + h1 > y2 && y0 < y2 + h2) { //Collision X certaine
+						colision.x = element;
+						
+						if (x1 > x2+(w2/2)) {
+							console.log("gauche");
+							position.x = x2 + w2;
+						}
+						else {
+							console.log("droite");
+							position.x = x2 - w0 - 10;
+						}
 					}
 				}
 				
@@ -65,19 +80,8 @@ define(["jquery", "app/data/elements"], function($, ElementsData){
 				}
 			});
 			
-			if (!colision.x) start.x += move.x;
-			if (!colision.y) start.y += move.y;
-			else if (!colision.y.haute) {
-				var dom = colision.y.dom;
-				if (dom && dom.position) {
-					var y2 = dom.position().top;
-					if (colision.y && colision.y.hitbox) {
-						y2 = y2 + colision.y.hitbox.y;
-					}
-					
-					start.y = y2 - h1;
-				}
-			}
+			if (!colision.x) position.x = position.x + acceleration.x;
+			if (!colision.y) position.y = position.y + acceleration.y;
 			return colision;
 		}
 	};

@@ -56,6 +56,11 @@
 	background-image: url("../img/game/boulangerie/back/lustre.png");
 	background-size: 100% 100%;
 }
+.back.boulanger {
+	width: 240; height: 310;
+	background-image: url("../img/game/boulangerie/back/boulanger.png");
+	background-size: 100% 100%;
+}
 
 /**
 * Elements de premier plan
@@ -122,17 +127,6 @@
 }
 
 /**
-* Macaron
-**/
-.element.macaron {
-	width: 160; height: 145;
-	background-image: url("../img/game/boulangerie/macaron.png");
-}
-.element.macaron.saut {
-	background-image: url("../img/game/boulangerie/macaron-saut.png");
-}
-
-/**
 * Boom
 **/
 .element.muffin {
@@ -166,4 +160,28 @@
 .element.fraise {
 	width: 35; height: 45;
 	background-image: url("../img/game/boulangerie/gateau-fraise/fraise.png");
+}
+
+/**
+* Gateau choco
+**/
+.element.gateau-choco {
+	width: 50; height: 45;
+	background-image: url("../img/game/boulangerie/gateau-choco/gateau.png");
+}
+.element.gateau-choco.saut {
+	width: 50; height: 45;
+	background-image: url("../img/game/boulangerie/gateau-choco/gateau-saut.png");
+}
+
+/**
+* Brownie
+**/
+.element.brownie {
+	width: 55; height: 150;
+	background-image: url("../img/game/boulangerie/brownie/brownie.png");
+}
+.element.brownie.ouverture {
+	width: 55; height: 150;
+	background-image: url("../img/game/boulangerie/brownie/brownie-ouvert.png");
 }

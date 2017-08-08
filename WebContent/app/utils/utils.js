@@ -2,7 +2,6 @@
 define(["jquery", "sha"], function($, sha){
 	return {
 		name : "bebelCloudysPeriple",
-		G : 9.8,
 		
 		/**
 		* Permet d'appeler un WS

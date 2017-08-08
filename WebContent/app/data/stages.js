@@ -19,21 +19,22 @@ define(["jquery"], function($){
 			  {id: "etagere-pain", x: 2000, y: 250},
 			  {id: "niche-vide1", x: 2500, y: 100},
 			  {id: "niche-vide2", x: 2700, y: 150},
-			  {id: "etagere-pain", x: 3300, y: 200}
+			  {id: "etagere-pain", x: 3300, y: 200},
+			  {id: "boulanger", x: 3600, y: 100}
 			],
 			"elements" : [
-			  {id: "eclair-cafe", x: -30, y: 455},
-			  {id: "eclair-cafe", x: 170, y: 455},
-			  {id: "eclair-cafe", x: 270, y: 455},
+			  {id: "eclair-cafe", x: -30, y: 400},
+			  {id: "eclair-cafe", x: 140, y: 455},
+			  {id: "choux", x: 350, y: 455},
 			  {id: "eclair-cafe", x: 470, y: 455},
 			  {id: "gateau-fraise", x: 700, y: 455},
 			  {id: "fraise", x: 770, y: 440},
 			  {id: "eclair-vanille", x: 900, y: 400},
 			  {id: "eclair-choco", x: 1200, y: 400},
 			  {id: "macaron", x: 1500, y: 500},
-			  {id: "eclair-fraise", x: 1700, y: 460},
-			  {id: "eclair-fraise", x: 1850, y: 410},
-			  {id: "eclair-fraise", x: 2000, y: 350},
+			  {id: "eclair-cafe", x: 1700, y: 460},
+			  {id: "eclair-cafe", x: 1850, y: 410},
+			  {id: "eclair-cafe", x: 2000, y: 350},
 			  {id: "muffin", x: 2100, y: 400},
 			  {id: "muffin", x: 2260, y: 350},
 			  {id: "muffin", x: 2440, y: 300},
@@ -44,7 +45,10 @@ define(["jquery"], function($){
 			  {id: "eclair-vanille", x: 3700, y: 500},
 			  {id: "eclair-vanille", x: 3900, y: 500},
 			  {id: "eclair-vanille", x: 4100, y: 500},
-			  {id: "eclair-cafe", x: 4400, y: 500}
+			  {id: "eclair-cafe", x: 4400, y: 500},
+			  {id: "eclair-cafe", x: 4600, y: 500},
+			  {id: "gateau-choco", x: 4550, y: 470, cible: "porte1"},
+			  {id: "brownie", x: 4700, y: 360, ref: "porte1"}
 			]
 		}
 	};

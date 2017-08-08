@@ -5,42 +5,43 @@ define(
 			'use strict';
 
 			return function() {
-				this.ACCELERATION = {
-						x : 2,
-						y : 5
-					};
-				this.ACCELERATION_MAX = {
-					x : 5,
-					y : 18
+				this.acceleration = {
+						x : 1,
+						y : 2
 				};
-				this.cours = 0;
-				this.changeVitesse = 0;
-				this.increment = function(dir, vecteur, signe) {
-					if (!signe && signe != 0) signe = 1;
+				this.vitesse = {
+						x : 4,
+						y : 0
+				};
+				this.v0 = {
+						x : 0,
+						y : -15
+				};
+				this.max = {
+						x : 3,
+						y : 15
+				};
+				this.flag = {
+						tombe : true,
+						cours : false
+				};
+				this.move = function(accelerationPerso, signe) {
+					var acceleration = Utils.clone(this.acceleration); var vitesse = this.vitesse;
+					var v0 = Utils.clone(this.v0); var max = Utils.clone(this.max);
 					
-					var acceleration = Utils.clone(this.ACCELERATION);
-					var accelerationMax = Utils.clone(this.ACCELERATION_MAX);
-					if (dir == "x" && this.cours) {
-						acceleration.x *= this.cours;
-						accelerationMax.x *= this.cours;
-					}
-					if (dir == "x" && this.changeVitesse) {
-						acceleration.x *= this.changeVitesse;
-						accelerationMax.x *= this.changeVitesse;
-					}
-					if (dir == "y" && Math.abs(signe) > 1) {
-						acceleration[dir] *= Math.abs(signe);
-						accelerationMax[dir] *= Math.pow(Math.abs(signe), 2);
-						signe = signe / Math.abs(signe);
-					}
+					if (this.flag.cours) acceleration.x *= 2;
 					
-					vecteur[dir] += signe * acceleration[dir];
+					accelerationPerso.x = signe * vitesse.x * acceleration.x;
+					accelerationPerso.y = vitesse.y;
 					
-					if (Math.abs(vecteur[dir]) > Math.abs(accelerationMax[dir])) {
-						vecteur[dir] = (signe * accelerationMax[dir]);
-						return true;
-					}
-					return false;
+					vitesse.y += acceleration.y;
+					if (vitesse.y > max.y) vitesse.y = max.y;
+					
+				};
+				
+				this.saute = function(multiple) {
+					if (!multiple) multiple = 1;
+					this.vitesse.y = this.v0.y * multiple;
 				};
 
 				this.marche = {
@@ -53,8 +54,6 @@ define(
 						this.marche.anim = 0;
 						this.marche.incr = 0;
 					}else {
-						direction = direction>0?1:-1;
-						
 						if (!this.marche.incr) this.marche.incr = 1;
 						
 						this.marche.anim += this.marche.incr;
@@ -68,9 +67,12 @@ define(
 						return (className.match (/\bcours-\S+/g) || []).join(' ');
 					});
 					
-					var mouvement = this.cours?"cours":"marche";
+					var mouvement = this.flag.cours?"cours":"marche";
 					$("#player").addClass(mouvement+"-"+this.marche.anim);
-					
+				};
+				this.oriente = function(direction) {
+					if (direction != 0) direction = direction>0?1:-1;
+						
 					if (direction && this.marche.direction != direction) {
 						this.marche.direction = direction;
 						$("#player").css({

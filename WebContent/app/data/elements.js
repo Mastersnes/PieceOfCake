@@ -6,10 +6,10 @@ define(["jquery"], function($){
 		 */
 		"eclair-choco" : { // Ralenti
 			useY : function(player) {
-				player.moveEngine.changeVitesse = 0.2;
+				player.moveEngine.acceleration.x = 0.2;
 			},
 			reset : function(player) {
-				player.moveEngine.changeVitesse = 0;
+				player.moveEngine.acceleration.x = 1;
 			}
 		},
 		"eclair-cafe" : {}, // RIEN
@@ -17,11 +17,11 @@ define(["jquery"], function($){
 			useY : function(player) {
 				var dom = this.dom;
 				dom.attr("boost", true);
-				player.moveEngine.changeVitesse = 2;
+				player.moveEngine.acceleration.x = 2;
 				player.flag.move = player.moveEngine.marche.direction;
 			},
 			reset : function(player) {
-				player.moveEngine.changeVitesse = 0;
+				player.moveEngine.acceleration.x = 1;
 			}
 		},
 		"eclair-fraise" : { // TOMBE
@@ -54,45 +54,50 @@ define(["jquery"], function($){
 				}
 			}
 		},
-		"choux" : {
+		"choux" : { // BOUGE VERTICALEMENT
 			useY : function(player) {
 				var dom = this.dom;
-				var move = dom.attr("move");
-				if (move == undefined) {
-					dom.attr("lastTop", dom.position().top);
-					move = -1;
+				if (dom.position().top == 0) return;
+				
+				var move = -3;
+				if (dom.attr("move")) move = dom.attr("move");
+				else {
+					dom.attr("move", move);
+					dom.attr("start", dom.position().top);
 				}
 				
-				if (move < 0) {
-					dom.attr("move", 0);
-					dom.animate({
-						top : "+=10px"
-					}, "slow", function() {
-						dom.attr("move", 1);
-					});
-				}else if (move > 0) {
-					dom.attr("move", 0);
-					dom.animate({
-						top : "-=10px"
-					}, "slow", function() {
-						dom.attr("move", -1);
-					});
-				}
+				var start = parseFloat(dom.attr("start"));
+				
+				dom.css({
+					top : "+="+move+"px"
+				});
+				player.position.y = dom.position().top - 50;
+				if (dom.position().top < start - 50) dom.attr("move", 3);
+				else if (dom.position().top > start + 50) dom.attr("move", -3);
 			},
 			reset : function(player) {
 				var dom = this.dom;
-				dom.removeAttr("move");
-				var lastTop = dom.attr("lastTop");
-				if (lastTop) {
-					dom.css({
-						top : lastTop
-					});
+				if (dom.position().top == 0) return;
+				
+				var move = -3;
+				if (dom.attr("move")) move = dom.attr("move");
+				else {
+					dom.attr("move", move);
+					dom.attr("start", dom.position().top);
 				}
+				
+				var start = parseFloat(dom.attr("start"));
+				
+				dom.css({
+					top : "+="+move+"px"
+				});
+				if (dom.position().top < start - 50) dom.attr("move", 3);
+				else if (dom.position().top > start + 50) dom.attr("move", -3);
 			}
 		},
 		"macaron" : { // REBONDIT
 			useY : function(player) {
-				if (player.flag.sautAllowed) player.flag.saute = -1.75;
+				if (!player.moveEngine.flag.tombe) player.moveEngine.saute(2);
 			}
 		},
 		"muffin" : { // EXPLOSE
@@ -166,6 +171,59 @@ define(["jquery"], function($){
 				});
 				if (dom.position().top < start - 100) dom.attr("move", 5);
 				else if (dom.position().top > start) dom.attr("move", -3);
+			}
+		},
+		"gateau-choco" : { // BOUTON
+			useY : function(player) {
+				var dom = this.dom;
+				var cibleId = dom.attr("cible");
+				var cible = $(".stage .element[ref="+cibleId+"]");
+				if (cible.length > 0) {
+					cible.attr("active", true);
+				}
+			}
+		},
+		"brownie" : { // S'OUVRE ET DEVIENT MORTEL EN TOMBANT
+			useY : function(player) {
+				var dom = this.dom;
+				if (dom.hasClass("mortel")) {
+					player.flag.dead = true;
+				}
+			},
+			reset : function(player) {
+				var dom = this.dom;
+				var index = dom.attr("index");
+				
+				if (dom.attr("active") == "true") {
+					if (!dom.hasClass("ouvert")) {
+						player.delay["brownie"+index] = 0;
+						dom.addClass("ouvert");
+						dom.addClass("ouverture");
+						dom.animate({
+							top : "-=100px"
+						}, "slow", function() {
+							dom.addClass("tombe");
+							dom.removeClass("ouverture");
+							dom.addClass("shake");
+						});
+					}
+					
+					if (dom.hasClass("tombe")){
+						var delay = ++player.delay["brownie"+index];
+						if (delay >= 20) {
+							dom.removeClass("shake");
+							dom.removeClass("tombe");
+							dom.addClass("mortel");
+							dom.animate({
+								top : "+=100px"
+							}, "fast", function() {
+								dom.attr("active", false);
+								dom.removeClass("ouvert");
+								dom.removeClass("mortel");
+							});
+						}
+					}
+				}
 			}
 		}
 	};

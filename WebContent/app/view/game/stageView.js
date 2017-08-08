@@ -36,6 +36,8 @@ function($, _, Utils, Stages, PlayerView) {
 			if (!type) type = "element";
 			var dom = $("<div></div>");
 			dom.attr("id", element.id);
+			if (element.ref) dom.attr("ref", element.ref);
+			if (element.cible) dom.attr("cible", element.cible);
 			dom.attr("index", index);
 			dom.attr("class", type + " "+ element.id);
 			dom.css({
