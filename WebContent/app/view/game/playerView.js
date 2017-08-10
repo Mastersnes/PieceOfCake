@@ -18,14 +18,21 @@ define(
 					move : 0,
 					dead : false
 				};
+				this.save = {
+					position : null,
+					lieu : null
+				};
 				this.delay = [];
 
 				this.init = function(stage) {
 					this.el = ".game";
 					this.stage = stage;
 					this.delay["refresh"] = 0;
+					
+					var saveSession = window.localStorage.getItem(Utils.name);
+					if (saveSession) this.save = JSON.parse(Utils.decode(saveSession));
+					
 					this.moveEngine = new MoveEngine();
-					this.reset();
 				};
 
 				this.load = function() {
@@ -72,8 +79,8 @@ define(
 					/**
 					 * Si il existe une action avec les plateformes
 					 */
-					if (colision.x && colision.x.useX) colision.x.useX(this);
-					if (colision.y && colision.y.useY) colision.y.useY(this);
+					if (colision.x && colision.x.action && colision.x.action.useX) colision.x.action.useX(this);
+					if (colision.y && colision.y.action && colision.y.action.useY) colision.y.action.useY(this);
 					
 					/**
 					 * Le personnage est posé sur une plateforme et n'a rien devant lui
@@ -91,8 +98,18 @@ define(
 				};
 
 				this.reset = function() {
-					this.position.x = 3500;
-					this.position.y = 300;
+					if (this.save.position) {
+						this.position.x = this.save.position.x;
+						this.position.y = this.save.position.y;
+						console.log("reset : ", this.position);
+					}
+				};
+				
+				this.savePosition = function(lieu) {
+					if (lieu) this.save.lieu = lieu;
+					this.save.position = Utils.clone(this.position);
+					console.log("save : ", this.save.position);
+					window.localStorage.setItem(Utils.name, Utils.encode(JSON.stringify(this.save)));
 				};
 
 				this.makeEvents = function() {

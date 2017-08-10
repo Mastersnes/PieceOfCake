@@ -10,13 +10,13 @@ function($, _, Utils, Stages, PlayerView) {
 	return function() {
 		this.init = function() {
 			this.el = ".game";
-			this.map = Stages.get("boulangerie");
 			this.player = new PlayerView(this);
 		};
 
-		this.load = function(id) {
-			$(".game .background").attr("class", "plan background "+id);
-			$(".game .frontground").attr("class", "plan frontground "+id);
+		this.load = function(lieu, id) {
+			this.map = Stages.get(lieu + id);
+			$(".game .background").attr("class", "plan background "+lieu);
+			$(".game .frontground").attr("class", "plan frontground "+lieu);
 			
 			for (var index in this.map.elements) {
 				var element = this.map.elements[index];
@@ -27,7 +27,20 @@ function($, _, Utils, Stages, PlayerView) {
 				$(".game .stage").append(this.createElement(element, index, "back"));
 			}
 			
-			this.player.load();
+			var player = this.player;
+			if (player.save.lieu != (lieu + id)) {
+				player.position.x = this.map.start.x;
+				player.position.y = this.map.start.y;
+				player.savePosition(lieu + id);
+			}else {
+				player.reset();
+			}
+			
+			player.load();
+			
+//			$(".game").animate({
+//				left : (player.position.x - 100) + "px"
+//			}, 1000);
 			
 			this.loop();
 		};
@@ -38,6 +51,10 @@ function($, _, Utils, Stages, PlayerView) {
 			dom.attr("id", element.id);
 			if (element.ref) dom.attr("ref", element.ref);
 			if (element.cible) dom.attr("cible", element.cible);
+			if (element.vitesse) dom.attr("vitesse", element.vitesse);
+			if (element.descente) dom.attr("descente", element.descente);
+			if (element.distance) dom.attr("distance", element.distance);
+			if (element.sens) dom.attr("sens", element.sens);
 			dom.attr("index", index);
 			dom.attr("class", type + " "+ element.id);
 			dom.css({
@@ -48,15 +65,20 @@ function($, _, Utils, Stages, PlayerView) {
 		};
 		
 		this.loop = function() {
-			this.player.refresh();
+			var player = this.player;
+			player.refresh();
 			
 			this.moveStage();
 			
-			if (this.player.flag.dead) {
-				this.player.flag.dead = false;
-				this.player.reset();
+			if (player.flag.dead) {
+				player.flag.dead = false;
+				player.reset();
+				
+				var position = -1*(player.position.x - 300);
+				if (position > 0) position = 0; 
+				
 				$(".game").animate({
-					left : "0px"
+					left : position + "px"
 				}, 1000);
 			}
 			

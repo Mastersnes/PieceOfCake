@@ -22,7 +22,7 @@ function($, _, Utils, page, StageView) {
 			var templateData = {};
 			this.el.html(template(templateData));
 			
-			this.stageView.load("boulangerie");
+			this.stageView.load("cuisine", 1);
 		};
 		
 		this.init();

@@ -30,21 +30,24 @@ define(["jquery", "app/data/elements"], function($, ElementsData){
 			});
 			
 			if (y1 < 0 || y1 > 768) colision.y = true;
-			if (x1 < 0) colision.x = true;
 			$(".stage .element:not(#player)").each(function() {
 				$(this).removeClass("saut");
 				var id = $(this).attr("id");
 				var element = ElementsData.get(id);
-				element.dom = $(this);
+				if (element.action) element.action.dom = $(this);
 				
 				var x2 = $(this).position().left; var y2 = $(this).position().top;
 				var w2 = $(this).width(); var h2 = $(this).height();
-				if (element && element.hitbox) {
+				if ($(this).attr("newHitbox")) {
+					var hitbox = JSON.parse($(this).attr("newHitbox"));
+					x2 = parseInt(hitbox.x); y2 = parseInt(hitbox.y);
+					w2 = parseInt(hitbox.w); h2 = parseInt(hitbox.h);
+				}else if (element && element.hitbox) {
 					x2 = x2 + element.hitbox.x; y2 = y2 + element.hitbox.y;
 					w2 = element.hitbox.w; h2 = element.hitbox.h;
 				}
 				
-				if ((move.y != 0) && (y1 + h1 > y2 && y1 < y2 + h2)) { //Collision Y potentiel
+				if ((y1 + h1 > y2 && y1 < y2 + h2)) { //Collision Y potentiel
 					if (x0 + w1 > x2 && x0 < x2 + w2) { // Collision Y certaine
 						colision.y = element;
 						if (y1 < y2) position.y = y2 - h1;
@@ -52,18 +55,11 @@ define(["jquery", "app/data/elements"], function($, ElementsData){
 					}
 				}
 				
-				if (move.x != 0 && (x1 + w1 > x2 && x1 < x2 + w2)) { // Collision X potentiel
+				if ((x1 + w1 > x2 && x1 < x2 + w2)) { // Collision X potentiel
 					if (y0 + h1 > y2 && y0 < y2 + h2) { //Collision X certaine
 						colision.x = element;
-						
-						if (x1 > x2+(w2/2)) {
-							console.log("gauche");
-							position.x = x2 + w2;
-						}
-						else {
-							console.log("droite");
-							position.x = x2 - w0 - 10;
-						}
+						if (x1 > x2+(w2/2)) position.x = x2 + w2;
+						else position.x = x2 - w0 - 10;
 					}
 				}
 				
@@ -75,13 +71,15 @@ define(["jquery", "app/data/elements"], function($, ElementsData){
 						height : h2
 					});
 					$(this).addClass("saut");
-				}else if (element.reset) {
-					element.reset(player);
+				}else if (element && element.action && element.action.reset) {
+					element.action.reset(player);
 				}
 			});
 			
 			if (!colision.x) position.x = position.x + acceleration.x;
 			if (!colision.y) position.y = position.y + acceleration.y;
+			
+			if (position.x < 0) position.x = 0;
 			return colision;
 		}
 	};

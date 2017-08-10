@@ -13,42 +13,87 @@
 **/
 .back.etagere-vide {
 	width: 250; height: 215;
-	background-image: url("../img/game/boulangerie/back/etagere-vide.png");
+	background-image: url("../img/game/boulangerie/back/etagere/divers/0.png");
 	background-size: 100% 100%;
 }
-.back.etagere {
+.back.etagere1 {
 	width: 250; height: 215;
-	background-image: url("../img/game/boulangerie/back/etagere.png");
+	background-image: url("../img/game/boulangerie/back/etagere/divers/1.png");
 	background-size: 100% 100%;
 }
-.back.etagere-pain {
+.back.etagere2 {
+	width: 250; height: 215;
+	background-image: url("../img/game/boulangerie/back/etagere/divers/2.png");
+	background-size: 100% 100%;
+}
+.back.etagere3 {
+	width: 250; height: 215;
+	background-image: url("../img/game/boulangerie/back/etagere/divers/3.png");
+	background-size: 100% 100%;
+}
+.back.etagere4 {
+	width: 250; height: 215;
+	background-image: url("../img/game/boulangerie/back/etagere/divers/4.png");
+	background-size: 100% 100%;
+}
+.back.etagere-pain1 {
 	width: 250; height: 60;
-	background-image: url("../img/game/boulangerie/back/etagere-pain.png");
+	background-image: url("../img/game/boulangerie/back/etagere/pain/1.png");
+	background-size: 100% 100%;
+}
+.back.etagere-pain2 {
+	width: 250; height: 60;
+	background-image: url("../img/game/boulangerie/back/etagere/pain/2.png");
+	background-size: 100% 100%;
+}
+.back.etagere-pain3 {
+	width: 250; height: 60;
+	background-image: url("../img/game/boulangerie/back/etagere/pain/3.png");
+	background-size: 100% 100%;
+}
+.back.etagere-pain4 {
+	width: 250; height: 60;
+	background-image: url("../img/game/boulangerie/back/etagere/pain/4.png");
 	background-size: 100% 100%;
 }
 .back.niche-baguette {
 	width: 250; height: 215;
-	background-image: url("../img/game/boulangerie/back/niche-baguette.png");
+	background-image: url("../img/game/boulangerie/back/niche/divers/1.png");
 	background-size: 100% 100%;
 }
-.back.niche-pain {
+.back.niche-pain1 {
 	width: 250; height: 215;
-	background-image: url("../img/game/boulangerie/back/niche-pain.png");
+	background-image: url("../img/game/boulangerie/back/niche/divers/2.png");
 	background-size: 100% 100%;
 }
-.back.niche-vide {
+.back.niche-pain2 {
 	width: 250; height: 215;
-	background-image: url("../img/game/boulangerie/back/niche-vide.png");
+	background-image: url("../img/game/boulangerie/back/niche/divers/3.png");
+	background-size: 100% 100%;
+}
+.back.niche-pain3 {
+	width: 250; height: 215;
+	background-image: url("../img/game/boulangerie/back/niche/divers/4.png");
+	background-size: 100% 100%;
+}
+.back.niche-pain4 {
+	width: 250; height: 215;
+	background-image: url("../img/game/boulangerie/back/niche/divers/5.png");
 	background-size: 100% 100%;
 }
 .back.niche-vide1 {
 	width: 250; height: 215;
-	background-image: url("../img/game/boulangerie/back/niche-vide1.png");
+	background-image: url("../img/game/boulangerie/back/niche/vide/1.png");
 	background-size: 100% 100%;
 }
 .back.niche-vide2 {
 	width: 250; height: 215;
-	background-image: url("../img/game/boulangerie/back/niche-vide2.png");
+	background-image: url("../img/game/boulangerie/back/niche/vide/2.png");
+	background-size: 100% 100%;
+}
+.back.niche-vide3 {
+	width: 250; height: 215;
+	background-image: url("../img/game/boulangerie/back/niche/vide/3.png");
 	background-size: 100% 100%;
 }
 .back.lustre {
@@ -110,20 +155,20 @@
 **/
 .element.choux {
 	width: 115; height: 50;
-	background-image: url("../img/game/boulangerie/choux.png");
+	background-image: url("../img/game/boulangerie/choux/choux.png");
 }
 .element.choux.saut {
-	background-image: url("../img/game/boulangerie/choux-saut.png");
+	background-image: url("../img/game/boulangerie/choux/choux-saut.png");
 }
 /**
 * Macaron
 **/
 .element.macaron {
 	width: 160; height: 145;
-	background-image: url("../img/game/boulangerie/macaron.png");
+	background-image: url("../img/game/boulangerie/macaron/macaron.png");
 }
 .element.macaron.saut {
-	background-image: url("../img/game/boulangerie/macaron-saut.png");
+	background-image: url("../img/game/boulangerie/macaron/macaron-saut.png");
 }
 
 /**
@@ -154,12 +199,15 @@
 	background-image: url("../img/game/boulangerie/gateau-fraise/gateau.png");
 }
 .element.gateau-fraise.saut {
-	width: 170; height: 100;
 	background-image: url("../img/game/boulangerie/gateau-fraise/gateau-saut.png");
 }
 .element.fraise {
 	width: 35; height: 45;
-	background-image: url("../img/game/boulangerie/gateau-fraise/fraise.png");
+	background-image: url("../img/game/boulangerie/danger/fraise.png");
+}
+.element.citron {
+	width: 45; height: 45;
+	background-image: url("../img/game/boulangerie/danger/citron.png");
 }
 
 /**
@@ -170,7 +218,6 @@
 	background-image: url("../img/game/boulangerie/gateau-choco/gateau.png");
 }
 .element.gateau-choco.saut {
-	width: 50; height: 45;
 	background-image: url("../img/game/boulangerie/gateau-choco/gateau-saut.png");
 }
 
@@ -182,6 +229,146 @@
 	background-image: url("../img/game/boulangerie/brownie/brownie.png");
 }
 .element.brownie.ouverture {
-	width: 55; height: 150;
 	background-image: url("../img/game/boulangerie/brownie/brownie-ouvert.png");
+}
+
+/**
+* Banane
+**/
+.element.banane {
+	width: 205; height: 100;
+	background-image: url("../img/game/boulangerie/banane/banane.png");
+}
+.element.banane.saut {
+	background-image: url("../img/game/boulangerie/banane/banane-saut.png");
+}
+
+/**
+* Gaufrette
+**/
+.element.gaufrette {
+	width: 60; height: 15;
+	background-image: url("../img/game/boulangerie/gaufrette/gaufrette.png");
+}
+.element.gaufrette.active {
+	background-image: url("../img/game/boulangerie/gaufrette/gaufrette-active.png");
+}
+
+/**
+* Boulangerie
+**/
+.plan.background.cuisine {
+	background-image: url("../img/game/cuisine/background.jpg");	
+}
+.plan.frontground.cuisine {
+	background-image: url("../img/game/cuisine/frontground.png");	
+}
+
+/**
+* Element d'arriere plan
+**/
+.back.meuble {
+	width: 220; height: 240;
+	background-image: url("../img/game/cuisine/back/meuble.png");
+}
+
+/**
+* Elements de premier plan
+**/
+/**
+* Beurre
+**/
+.element.beurre {
+	width: 200; height: 75;
+	background-image: url("../img/game/cuisine/beurre/beurre.png");
+}
+.element.beurre.saut {
+	background-image: url("../img/game/cuisine/beurre/beurre-saut.png");
+}
+/**
+* Oeuf
+**/
+.element.oeuf {
+	width: 105; height: 140;
+	background-image: url("../img/game/cuisine/oeuf/oeuf.png");
+}
+.element.oeuf.etape-2 {
+	background-image: url("../img/game/cuisine/oeuf/oeuf2.png");
+}
+.element.oeuf.etape-3 {
+	background-image: url("../img/game/cuisine/oeuf/oeuf3.png");
+}
+.element.oeuf.etape-4 {
+	background-image: url("../img/game/cuisine/oeuf/oeuf4.png");
+}
+.element.oeuf.etape-5 {
+	background-image: url("../img/game/cuisine/oeuf/oeuf5.png");
+}
+.element.coquille {
+	width: 105; height: 45;
+	background-image: url("../img/game/cuisine/oeuf/coquille.png");
+}
+
+/**
+* Chocolat
+**/
+.element.chocolat {
+	width: 200; height: 20;
+	background-image: url("../img/game/cuisine/chocolat/chocolat.png");
+}
+.element.chocolat.saut {
+	background-image: url("../img/game/cuisine/chocolat/chocolat-saut.png");
+}
+
+/**
+* Noisettes
+**/
+.element.noisette1 {
+	width: 15; height: 15;
+	background-image: url("../img/game/cuisine/noisette/noisette1.png");
+}
+.element.noisette2 {
+	width: 15; height: 15;
+	background-image: url("../img/game/cuisine/noisette/noisette2.png");
+}
+.element.noisette3 {
+	width: 15; height: 15;
+	background-image: url("../img/game/cuisine/noisette/noisette3.png");
+}
+.element.noisette4 {
+	width: 15; height: 15;
+	background-image: url("../img/game/cuisine/noisette/noisette4.png");
+}
+
+/**
+* Pomme
+**/
+.element.pomme {
+	width: 160; height: 145;
+	background-image: url("../img/game/cuisine/pomme/pomme.png");
+}
+.element.pomme.saut {
+	background-image: url("../img/game/cuisine/pomme/pomme-saut.png");
+}
+
+/**
+* Poire
+**/
+.element.poire {
+	width: 160; height: 145;
+	background-image: url("../img/game/cuisine/poire/poire.png");
+}
+.element.poire.saut {
+	background-image: url("../img/game/cuisine/poire/poire-saut.png");
+}
+
+/**
+* Pate
+**/
+.element.pate {
+	width: 170; height: 100;
+	background-image: url("../img/game/cuisine/pate/pate.png");
+}
+.element.pate.saut {
+	background-image: url("../img/game/cuisine/pate/pate-saut.png");
 }
