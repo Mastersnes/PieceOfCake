@@ -1,13 +1,30 @@
 <link rel="stylesheet" href="app/css/style-game.css">
 <link rel="stylesheet" href="app/css/style-stage.css">
+<link rel="stylesheet" href="app/css/style-cinematique.css">
 <div class="game page">
 	<div class="plan background"></div>
 	<div class="plan stage"></div>
 	<div class="plan frontground"></div>
 	
 	<!-- debug -->
-	<div class="hitbox"></div>
+	<div class="hitbox hidden"></div>
 </div>
+
+<div class="page collapse pause" id="pause">
+	<div class="page mask"></div>
+	<div class="h-center v-center text-center">
+		<div class="text">PAUSE</div>
+		<div class="text"><%=data.text.get("codeHolder")%> : <span id="code"></span></div>
+	</div>
+</div>
+
+<div class="page collapse" id="cinematique">
+	<div class="page" id="next"></div>
+	<div class="page" id="current"></div>
+</div>
+
+<div class="page collapse" id="end"></div>
+
 <!-- Preload des images -->
 <div class="preload">
 	<div class="element eclair-choco"></div>

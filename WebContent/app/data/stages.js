@@ -5,6 +5,8 @@ define(["jquery"], function($){
 		 * Stages
 		 */
 		"boulangerie1" : {
+			"gagne" : {lieu : "cuisine", stage : 1},
+			"cinematique" : ["cinematique-didactitiel", "cinematique-boulangerie1", "cinematique-boulangerie2"],
 			"start" : {
 				x : 100,
 				y : 350
@@ -29,7 +31,24 @@ define(["jquery"], function($){
 			  {id: "etagere3", x: 4600, y: 200},
 			  {id: "etagere4", x: 4900, y: 300},
 			  {id: "etagere-pain3", x: 5300, y: 200},
-			  {id: "etagere-pain4", x: 5500, y: 100}
+			  {id: "etagere-pain4", x: 5500, y: 100},
+			  {id: "lustre", x: 5900, y: 0},
+			  {id: "etagere-pain1", x: 6400, y: 250},
+			  {id: "niche-pain2", x: 6800, y: 100},
+			  {id: "etagere2", x: 7300, y: 200},
+			  {id: "niche-pain1", x: 7500, y: 100},
+			  {id: "niche-vide1", x: 7700, y: 100},
+			  {id: "niche-baguette", x: 8000, y: 100},
+			  {id: "niche-vide2", x: 7550, y: 300},
+			  {id: "niche-vide3", x: 7750, y: 300},
+			  {id: "etagere-vide", x: 8000, y: 200},
+			  {id: "etagere1", x: 8300, y: 200},
+			  {id: "lustre", x: 9000, y: 0},
+			  {id: "etagere2", x: 9300, y: 200},
+			  {id: "niche-pain1", x: 9300, y: 100},
+			  {id: "niche-pain3", x: 9500, y: 150},
+			  {id: "etagere-pain2", x: 9700, y: 200},
+			  {id: "boulanger", x: 10000, y: 100}
 			],
 			"elements" : [
 			  {id: "eclair-cafe", x: -30, y: 400},
@@ -94,16 +113,22 @@ define(["jquery"], function($){
 			  {id: "brownie", x: 9700, y: 310, ref : "porte2", vitesse: 9, descente: 9},
 			  {id: "brownie", x: 9750, y: 310, ref : "porte3", vitesse : 4, descente : 8},
 			  {id: "eclair-cafe", x: 9750, y: 450, ref : "porte3"},
-			  {id: "banane", x: 10000, y: 450, vitesse : 1}
+			  {id: "banane", x: 10000, y: 450}
 			]
 		},
 		"cuisine1" : {
+			"gagne" : {lieu : "fin", stage: "0"},
 			"start" : {
 				x : 100,
 				y : 450
 			},
 			"back" : [
-			  {id: "meuble", x: 100, y: 200}
+			  {id: "meuble", x: 100, y: 100},
+			  {id: "meuble", x: 300, y: 100},
+			  {id: "lavabo", x: 500, y: 110},
+			  {id: "meuble", x: 700, y: 100},
+			  {id: "meuble", x: 900, y: 100},
+			  {id: "etagere", x: 1300, y: 200}
 			],
 			"elements" : [
 			  {id: "beurre", x: -30, y: 500},
@@ -114,10 +139,22 @@ define(["jquery"], function($){
 			  {id: "noisette2", x: 470, y: 440, vitesse: 5, descente: 5},
 			  {id: "noisette3", x: 490, y: 440, vitesse: 4, descente: 7},
 			  {id: "noisette4", x: 510, y: 440, vitesse: 2, descente: 8},
+			  {id: "gaufrette", x: 530, y: 440},
 			  {id: "pomme", x: 650, y: 440},
 			  {id: "poire", x: 850, y: 480},
-			  {id: "pate", x: 1100, y: 480}
+			  {id: "mochi", x: 900, y: 475, cible: "farine1"},
+			  {id: "pate", x: 1100, y: 480},
+			  {id: "farine", x: 1200, y: 400, ref : "farine1"},
+			  {id: "pate", x: 1300, y: 480},
+			  {id: "sucre", x: 1400, y: 530}
 			]
+		},
+		"fin0" : {
+			"end" : true,
+			"cinematique" : [],
+			"start" : {},
+			"back" : [],
+			"elements" : []
 		}
 	};
 	

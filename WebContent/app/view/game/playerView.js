@@ -20,7 +20,8 @@ define(
 				};
 				this.save = {
 					position : null,
-					lieu : null
+					lieu : null,
+					stage : null
 				};
 				this.delay = [];
 
@@ -29,13 +30,11 @@ define(
 					this.stage = stage;
 					this.delay["refresh"] = 0;
 					
-					var saveSession = window.localStorage.getItem(Utils.name);
-					if (saveSession) this.save = JSON.parse(Utils.decode(saveSession));
-					
 					this.moveEngine = new MoveEngine();
 				};
 
-				this.load = function() {
+				this.load = function(save) {
+					if (save) this.save = save;
 					$(".game .stage").append(stage.createElement({
 						id : "player",
 						x : this.position.x,
@@ -80,7 +79,15 @@ define(
 					 * Si il existe une action avec les plateformes
 					 */
 					if (colision.x && colision.x.action && colision.x.action.useX) colision.x.action.useX(this);
-					if (colision.y && colision.y.action && colision.y.action.useY) colision.y.action.useY(this);
+					if (colision.y && colision.y.action){
+						var colisionAction = colision.y.action;
+						var playSound = colisionAction.dom.attr("playSound");
+						if (!playSound) {
+							colisionAction.dom.attr("playSound", true);
+							this.stage.mediatheque.playSound(colision.y.sound);
+						}
+						if (colisionAction.useY) colisionAction.useY(this);
+					}
 					
 					/**
 					 * Le personnage est posé sur une plateforme et n'a rien devant lui
@@ -96,19 +103,24 @@ define(
 
 					if (this.position.y >= 730) this.flag.dead = true;
 				};
+				
+				this.gagne = function() {
+					this.stage.gagne();
+				};
 
 				this.reset = function() {
 					if (this.save.position) {
 						this.position.x = this.save.position.x;
 						this.position.y = this.save.position.y;
-						console.log("reset : ", this.position);
 					}
 				};
 				
-				this.savePosition = function(lieu) {
-					if (lieu) this.save.lieu = lieu;
+				this.savePosition = function(lieu, stage) {
+					if (lieu && stage) {
+						this.save.lieu = lieu;
+						this.save.stage = stage;
+					}
 					this.save.position = Utils.clone(this.position);
-					console.log("save : ", this.save.position);
 					window.localStorage.setItem(Utils.name, Utils.encode(JSON.stringify(this.save)));
 				};
 
@@ -130,6 +142,9 @@ define(
 							break;
 						case 16: // COURS
 							that.moveEngine.flag.cours = true;
+							break;
+						case 27: // PAUSE
+							that.stage.togglePause(that.save);
 							break;
 						};
 						

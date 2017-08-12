@@ -271,6 +271,10 @@
 	width: 220; height: 240;
 	background-image: url("../img/game/cuisine/back/meuble.png");
 }
+.back.lavabo {
+	width: 220; height: 330;
+	background-image: url("../img/game/cuisine/back/lavabo.png");
+}
 
 /**
 * Elements de premier plan
@@ -371,4 +375,37 @@
 }
 .element.pate.saut {
 	background-image: url("../img/game/cuisine/pate/pate-saut.png");
+}
+
+/**
+* Farine
+**/
+.element.farine {
+	width: 70; height: 150;
+	background-image: url("../img/game/cuisine/farine/farine.png");
+}
+.element.farine.ouverture {
+	background-image: url("../img/game/cuisine/farine/farine-ouvert.png");
+}
+
+/**
+* Mochi
+**/
+.element.mochi {
+	width: 70; height: 45;
+	background-image: url("../img/game/cuisine/mochi/mochi.png");
+}
+.element.mochi.saut {
+	background-image: url("../img/game/cuisine/mochi/mochi-saut.png");
+}
+
+/**
+* Sucre
+**/
+.element.sucre {
+	width: 50; height: 20;
+	background-image: url("../img/game/cuisine/sucre/sucre.png");
+}
+.element.sucre.active {
+	background-image: url("../img/game/cuisine/sucre/sucre-active.png");
 }

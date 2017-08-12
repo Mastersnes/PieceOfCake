@@ -6,16 +6,20 @@ define(["jquery",
 function($, _, Utils, page) {
 	'use strict';
 
-	return function() {
-		this.init = function() {
+	return function(parent, Textes) {
+		this.init = function(parent, Textes) {
 			this.el = "#option-popup";
+			this.Textes = Textes;
+			this.parent = parent;
 			this.render();
 		};
 
 		this.render = function() {
 			_.templateSettings.variable = "data";
 			var template = _.template(page);
-			var templateData = {};
+			var templateData = {
+					text : this.Textes
+			};
 			$(this.el).html(template(templateData));
 			
 			this.makeEvents();
@@ -23,8 +27,16 @@ function($, _, Utils, page) {
 		
 		this.makeEvents = function() {
 			var that = this;
-			$(this.el).click(function() {
+			$(this.el).find(".close").click(function() {
 				$(that.el).hide("slow");
+			});
+			$(this.el).find(".flag.fr").click(function() {
+				that.Textes.local = "fr";
+				parent.render();
+			});
+			$(this.el).find(".flag.en").click(function() {
+				that.Textes.local = "en";
+				parent.render();
 			});
 		};
 		
@@ -32,6 +44,6 @@ function($, _, Utils, page) {
 			$(this.el).show("slow");
 		};
 		
-		this.init();
+		this.init(parent, Textes);
 	};
 });

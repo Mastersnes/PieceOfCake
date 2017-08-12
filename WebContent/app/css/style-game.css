@@ -71,10 +71,27 @@
 /**
 * Utils
 **/
+.pause {
+	z-index: 10000;
+}
+.pause .mask {
+	background: gray;
+	opacity : 0.5;
+}
+.text {
+	font-family: fantasy;
+	font-size : 2em;
+}
 .preload {
 	position: absolute;
 	left: -9999px;
 	top : -9999px;
+}
+#end {
+	z-index: 10000;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-image: url("../img/menu/menu-fond.jpg");
 }
 .hitbox {
 	position: absolute;

@@ -1,0 +1,33 @@
+#cinematique div {
+	cursor: pointer;
+	z-index: 10000;
+	background-repeat: no-repeat;
+	background-size : 100% 100%;
+	background-color: white;
+}
+
+/**
+* Didactitiel
+**/
+#cinematique .cinematique-didactitiel-fr {
+	background-image: url("../img/game/didactitiel/cinematique-didactitiel-fr.jpg");	
+}
+#cinematique .cinematique-didactitiel-en {
+	background-image: url("../img/game/didactitiel/cinematique-didactitiel-en.jpg");	
+}
+
+/**
+* Boulangerie
+**/
+#cinematique .cinematique-boulangerie1-fr {
+	background-image: url("../img/game/boulangerie/cinematique/cinematique-boulangerie1-fr.jpg");	
+}
+#cinematique .cinematique-boulangerie1-en {
+	background-image: url("../img/game/boulangerie/cinematique/cinematique-boulangerie1-en.jpg");	
+}
+#cinematique .cinematique-boulangerie2-fr {
+	background-image: url("../img/game/boulangerie/cinematique/cinematique-boulangerie2-fr.jpg");	
+}
+#cinematique .cinematique-boulangerie2-en {
+	background-image: url("../img/game/boulangerie/cinematique/cinematique-boulangerie2-en.jpg");	
+}

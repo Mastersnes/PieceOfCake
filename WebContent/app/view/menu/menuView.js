@@ -2,26 +2,28 @@
 define(["jquery",
         'underscore',
         "app/utils/utils",
+        "app/data/textes",
         "text!app/template/menu/menu.html",
         "app/view/game/gameView",
         "app/view/menu/loadView",
         "app/view/menu/optionView",
         "app/view/menu/creditView",
         "app/view/menu/partenaireView"], 
-function($, _, Utils, page, GameView, LoadView, OptionView, CreditView, PartenaireView) {
+function($, _, Utils, Textes, page, GameView, LoadView, OptionView, CreditView, PartenaireView) {
 	'use strict';
 
 	return function() {
 		this.init = function() {
 			this.el = $("#app");
-			Utils.load("track", {"where" : "Menu"}, function(data) {}, "POST");
 			this.render();
 		};
 
 		this.render = function() {
 			_.templateSettings.variable = "data";
 			var template = _.template(page);
-			var templateData = {};
+			var templateData = {
+					text : Textes
+			};
 			this.el.html(template(templateData));
 			
 			this.makeEvents();
@@ -30,24 +32,27 @@ function($, _, Utils, page, GameView, LoadView, OptionView, CreditView, Partenai
 		this.makeEvents = function() {
 			var that = this;
 			$("#new").click(function() {
-				new GameView(this);
+				that.newGame();
 			});
 			$("#load").click(function() {
-				if (!that.loadView) that.loadView = new LoadView();
-				that.loadView.show();
+				new LoadView(that, Textes).show();
 			});
 			$("#option").click(function() {
-				if (!that.optionView) that.optionView = new OptionView();
-				that.optionView.show();
+				new OptionView(that, Textes).show();
 			});
 			$("#credit").click(function() {
-				if (!that.creditView) that.creditView = new CreditView();
-				that.creditView.show();
+				new CreditView(Textes).show();
 			});
 			$("#partenaire").click(function() {
-				if (!that.partenaireView) that.partenaireView = new PartenaireView();
-				that.partenaireView.show();
+				new PartenaireView(Textes).show();
 			});
+		};
+		
+		this.newGame = function() {
+			new GameView(this, false, null, Textes);
+		};
+		this.loadGame = function(code) {
+			new GameView(this, true, code, Textes);
 		};
 		
 		this.init();

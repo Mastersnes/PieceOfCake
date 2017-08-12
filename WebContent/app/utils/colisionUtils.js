@@ -34,7 +34,10 @@ define(["jquery", "app/data/elements"], function($, ElementsData){
 				$(this).removeClass("saut");
 				var id = $(this).attr("id");
 				var element = ElementsData.get(id);
-				if (element.action) element.action.dom = $(this);
+				if (element.action) {
+					element.action.dom = $(this);
+					element.action.parent = element;
+				}
 				
 				var x2 = $(this).position().left; var y2 = $(this).position().top;
 				var w2 = $(this).width(); var h2 = $(this).height();
@@ -63,16 +66,26 @@ define(["jquery", "app/data/elements"], function($, ElementsData){
 					}
 				}
 				
-				if (colision.y == element) {
+				if (id == "farine") {
 					$(".hitbox").css({
 						left : x2,
 						top : y2,
 						width : w2,
 						height : h2
 					});
+				}
+				
+				if (colision.y == element) {
+//					$(".hitbox").css({
+//						left : x2,
+//						top : y2,
+//						width : w2,
+//						height : h2
+//					});
 					$(this).addClass("saut");
-				}else if (element && element.action && element.action.reset) {
-					element.action.reset(player);
+				}else if (element && element.action) {
+					element.action.dom.removeAttr("playSound");
+					if (element.action.reset) element.action.reset(player);
 				}
 			});
 			
@@ -80,6 +93,7 @@ define(["jquery", "app/data/elements"], function($, ElementsData){
 			if (!colision.y) position.y = position.y + acceleration.y;
 			
 			if (position.x < 0) position.x = 0;
+			if (position.y < 0) position.y = 1;
 			return colision;
 		}
 	};

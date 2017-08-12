@@ -1,5 +1,20 @@
 <div class="content">
-	<div class="texte">
-		EN CONSTRUCTION
+	<button type="button" class="close" aria-label="Close">X</button>
+	<div class="texte row">
+   		<div class="col-md-12">
+   			<div class="form-group col-md-12">
+   				<label class="col-md-12" for="code"><%=data.text.get("fromCode")%></label>
+   				<div class="col-md-8">
+   					<input class="form-control" type="text" id="code" placeholder="<%=data.text.get('codeHolder')%>" />
+   				</div>
+   					<button id="loadCode" class="col-md-4 btn btn-secondary"><%=data.text.get("load")%></button>
+   			</div>
+   		</div>
+   		<% if(data.saveExist) { %>
+   			<div class="col-md-12"><%=data.text.get("or")%></div>
+   			<ul class="col-md-12 popup-menu">
+   				<li id="loadSave"><%=data.text.get("fromNavigateur")%></li>
+   			</ul>
+   		<% } %>
 	</div>
 </div>
