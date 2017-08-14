@@ -33,7 +33,7 @@ function($, _, Utils, Textes, Mediatheque, page, GameView, LoadView, OptionView,
 			
 			setTimeout(function() {
 				$(".bebel").fadeOut("slow");
-			}, 1000);
+			}, 2000);
 		};
 		
 		this.makeEvents = function() {

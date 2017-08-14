@@ -311,7 +311,7 @@ define(["jquery", "app/data/actions"], function($, Actions){
 					if (!dom.attr("use")) {
 						player.flag.point++;
 						dom.attr("use", true);
-						dom.hide();
+						dom.addClass("hidden");
 					}
 				},
 				useX : function(player) {
@@ -319,7 +319,7 @@ define(["jquery", "app/data/actions"], function($, Actions){
 					if (!dom.attr("use")) {
 						player.flag.point++;
 						dom.attr("use", true);
-						dom.hide();
+						dom.addClass("hidden");
 					}
 				}
 			}

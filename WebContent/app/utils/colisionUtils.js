@@ -30,7 +30,10 @@ define(["jquery", "app/data/elements"], function($, ElementsData){
 			});
 			
 			if (y1 < 0 || y1 > 768) colision.y = true;
-			$(".stage .element:not(#player)").each(function() {
+			$(".stage .element:not(#player):visible").each(function() {
+				if ($(this).offset().left - $(this).width() < -1000) return true;
+				if ($(this).offset().left > $(".game").width() + 1000) return true;
+				
 				$(this).removeClass("saut");
 				var id = $(this).attr("id");
 				var element = ElementsData.get(id);

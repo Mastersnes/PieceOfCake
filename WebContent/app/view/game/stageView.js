@@ -130,7 +130,7 @@ function($, _, Utils, CinematiqueView, Stages, PlayerView) {
 			var that = this;
 			setTimeout(function() {
 				that.loop();
-			}, 40);
+			}, 30);
 		};
 		
 		this.togglePause = function(save, point, deathNb) {
