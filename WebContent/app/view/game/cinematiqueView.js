@@ -48,7 +48,6 @@ function($, _, Utils) {
 		this.makeEvents = function() {
 			var that = this;
 			$(this.el).click(function() {
-				console.log("next");
 				that.next();
 			});
 		};

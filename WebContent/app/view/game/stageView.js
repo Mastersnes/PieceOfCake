@@ -18,14 +18,20 @@ function($, _, Utils, CinematiqueView, Stages, PlayerView) {
 			this.player = new PlayerView(this);
 		};
 
-		this.go = function(lieu, stage, position) {
+		this.go = function(lieu, stage, save) {
+			$("#cinematique").show();
 			if (!this.cinematique) this.cinematique = new CinematiqueView(this.Textes);
 			this.map = Stages.get(lieu + stage);
 			
 			if (this.map.end) {
-				parent.gameOver();
+				if (this.map.cinematique) {
+					this.cinematique.load(this.map.cinematique);
+				}else {
+					$("#cinematique").hide();
+				}
+				parent.gameOver(this.player.flag.point);
 			}else {
-				this.mediatheque.stopAll();
+				this.mediatheque.stopAllMusic();
 				if (this.map.music) this.mediatheque.play(this.map.music);
 				
 				$(".game .background").attr("class", "plan background "+lieu);
@@ -41,23 +47,24 @@ function($, _, Utils, CinematiqueView, Stages, PlayerView) {
 				}
 				
 				var player = this.player;
-				if (position) {
-					player.position.x = position.x;
-					player.position.y = position.y;
+				if (save) {
+					$("#cinematique").hide();
+					player.load(save);
 				}else {
 					//Initialisation du stage
 					if (this.map.cinematique) {
 						this.cinematique.load(this.map.cinematique);
+					}else {
+						$("#cinematique").hide();
 					}
 					player.position.x = this.map.start.x;
 					player.position.y = this.map.start.y;
 				}
 				player.savePosition(lieu, stage);
 				player.reset();
-				player.load();
+				player.render();
 
 				if (!this.alreadyLoop) {
-					console.log("startloop");
 					this.loop();
 				}
 			}
@@ -72,7 +79,7 @@ function($, _, Utils, CinematiqueView, Stages, PlayerView) {
 		};
 
 		this.load = function(save) {
-			this.go(save.lieu, save.stage, save.position);
+			this.go(save.lieu, save.stage, save);
 		};
 		
 		this.createElement = function(element, index, type) {
@@ -104,6 +111,7 @@ function($, _, Utils, CinematiqueView, Stages, PlayerView) {
 				this.moveStage();
 				
 				if (player.flag.dead) {
+					this.mediatheque.playSound("/slurp.mp3");
 					player.flag.dead = false;
 					player.reset();
 					
@@ -124,12 +132,13 @@ function($, _, Utils, CinematiqueView, Stages, PlayerView) {
 			}, 40);
 		};
 		
-		this.togglePause = function(save) {
+		this.togglePause = function(save, point) {
 			
 			this.pause = !this.pause;
 			if (this.pause) {
 				var code = Utils.encode(JSON.stringify(save));
 				$("#pause #code").html(code);
+				$("#pause #point").html(point);
 				$("#pause").show();
 			}else {
 				$("#pause").hide();
@@ -137,6 +146,8 @@ function($, _, Utils, CinematiqueView, Stages, PlayerView) {
 		};
 		
 		this.moveStage = function() {
+			if ($("#player").length == 0) return;
+			
 			var screenW = $(window).width();
 			var playerX = $("#player").position().left;
 			var stageX = $(".game").position().left;

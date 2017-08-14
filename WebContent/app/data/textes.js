@@ -44,6 +44,10 @@ define(["jquery", "app/data/actions"], function($, Actions){
 			fr : "Langage :",
 			en : "Language :"
 		},
+		"fullscreen" : {
+			fr : "Plein &eacutecran (appuyez sur echap pour revenir)",
+			en : "Fullscreen (press escape for return)"
+		},
 		"credits" : {
 			fr : "Credits",
 			en : "Credits"
@@ -55,6 +59,14 @@ define(["jquery", "app/data/actions"], function($, Actions){
 		"developpement" : {
 			fr : "D&eacuteveloppement",
 			en : "Development"
+		},
+		"musique" : {
+			fr : "Musiques",
+			en : "Musics"
+		},
+		"textes" : {
+			fr : "Textes",
+			en : "Texts"
 		},
 		"partenaires" : {
 			fr : "Partenaires",
@@ -68,9 +80,13 @@ define(["jquery", "app/data/actions"], function($, Actions){
 			fr : "Merci de ne pas la modifier ou la partager de fa&ccedil;on commerciale sans notre accord.",
 			en : "Please don't modify and share it commercially without our consent."
 		},
+		"point" : {
+			fr : "Point",
+			en : "Point"
+		},
 		"end0" : {
-			fr : "F&eacute;licitation, vous avez termin&eacute; le jeu !",
-			en : "Congratulations, you won !"
+			fr : "F&eacute;licitation, vous avez termin&eacute; le jeu avec : <span id='point'></span> Points",
+			en : "Congratulations, you won with : <span id='point'></span> Points"
 		},
 		"end1" : {
 			fr : "N&apos;h&eacute;sitez pas &agrave; donner votre avis sur notre page <a target='_blank' alt='Les jeux de Bebel' href='https://www.facebook.com/lesjeuxdebebel/'>Les jeux de Bebel</a>.",

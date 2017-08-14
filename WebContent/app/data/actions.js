@@ -4,11 +4,17 @@ define(["jquery"], function($){
 		"ralenti" : { // Ralenti
 			useY : function(player) {
 				var dom = this.dom;
+				dom.attr("soundPlay", true);
 				var vitesse = 0.2;
 				if (dom.attr("vitesse")) vitesse = parseFloat(dom.attr("vitesse"));
 				player.moveEngine.acceleration.x = vitesse;
 			},
 			reset : function(player) {
+				var dom = this.dom;
+				if (dom.attr("soundPlay")) {
+					dom.removeAttr("soundPlay");
+					player.stopSound("/cat.mp3");
+				}
 				player.moveEngine.acceleration.x = 1;
 			}
 		},
@@ -44,13 +50,15 @@ define(["jquery"], function($){
 				move = parseInt(move);
 				var speed = 1;
 				if (dom.attr("vitesse")) speed = parseInt(dom.attr("vitesse"));
+				var distance = 50;
+				if (dom.attr("distance")) distance = parseInt(dom.attr("distance"));
 				
 				dom.css({
 					top : "+="+(move*speed)+"px"
 				});
 				player.position.y = dom.position().top - 50;
-				if (dom.position().top < start - 50) dom.attr("move", 1);
-				else if (dom.position().top > start + 50) dom.attr("move", -1);
+				if (dom.position().top < start - distance) dom.attr("move", 1);
+				else if (dom.position().top > start + distance) dom.attr("move", -1);
 			},
 			reset : function(player) {
 				var dom = this.dom;
@@ -70,12 +78,14 @@ define(["jquery"], function($){
 				move = parseInt(move);
 				var speed = 1;
 				if (dom.attr("vitesse")) speed = parseInt(dom.attr("vitesse"));
+				var distance = 50;
+				if (dom.attr("distance")) distance = parseInt(dom.attr("distance"));
 				
 				dom.css({
 					top : "+="+(move*speed)+"px"
 				});
-				if (dom.position().top < start - 50) dom.attr("move", 1);
-				else if (dom.position().top > start + 50) dom.attr("move", -1);
+				if (dom.position().top < start - distance) dom.attr("move", 1);
+				else if (dom.position().top > start + distance) dom.attr("move", -1);
 			}
 		},
 		"explose" : {
@@ -85,13 +95,14 @@ define(["jquery"], function($){
 				var delay = 0;
 				if (dom.attr("delay")) delay = parseInt(dom.attr("delay"));
 				
+				dom.attr("soundPlay", true);
+				
 				delay++;
 				dom.attr("delay", delay);
 				if (delay >= 10) {
 					dom.attr("delay", 0);
 					var saut = 1;
 					if (dom.attr("saut")) saut = parseInt(dom.attr("saut"));
-					console.log("saut : ", saut);
 					saut++;
 					
 					dom.attr("saut", saut);
@@ -100,18 +111,30 @@ define(["jquery"], function($){
 					});
 					dom.addClass("saut-"+saut);
 					
-					if (saut > 4) {
-						player.flag.dead = true;
+					if (saut == 4) {
+						dom.removeAttr("soundPlay");
+						player.stopSound("/effort.mp3");
+						player.playSound("/boom.mp3");
 						dom.attr("delay", 9);
+					}
+					
+					if (saut > 4) {
 						dom.removeClass(function (index, className) {
 						    return (className.match (/\bsaut-\S+/g) || []).join(' ');
 						});
 						dom.removeAttr("saut");
+						player.flag.dead = true;
 					}
 				}
 			},
 			reset : function(player) {
 				var dom = this.dom;
+				
+				if (dom.attr("soundPlay")) {
+					dom.removeAttr("soundPlay");
+					player.stopSound("/psss.mp3");
+				}
+				
 				var index = dom.attr("index");
 				dom.attr("delay", 0);
 				dom.removeClass(function (index, className) {
@@ -127,11 +150,17 @@ define(["jquery"], function($){
 				var delay = 0;
 				if (dom.attr("delay")) delay = parseInt(dom.attr("delay"));
 				
+				dom.attr("soundPlay", true);
+				
 				delay++;
 				dom.attr("delay", delay);
 				if (!dom.hasClass("shake")) dom.addClass("shake");
 				
 				if (delay == 15) {
+					dom.removeAttr("soundPlay");
+					player.stopSound("/effort.mp3");
+					player.playSound("/pouah.mp3");
+					
 					dom.attr("lastTop", dom.position().top);
 					dom.animate({
 						top : "1500px"
@@ -144,6 +173,10 @@ define(["jquery"], function($){
 				dom.attr("delay", 0);
 				dom.removeClass("shake");
 				var lastTop = dom.attr("lastTop");
+				if (dom.attr("soundPlay")) {
+					dom.removeAttr("soundPlay");
+					player.stopSound("/effort.mp3");
+				}
 				if (lastTop) {
 					dom.removeAttr("lastTop");
 					dom.animate({
@@ -204,6 +237,12 @@ define(["jquery"], function($){
 			}
 		},
 		"porte" : {
+			useX : function(player) {
+				var dom = this.dom;
+				if (dom.hasClass("mortel")) {
+					player.flag.dead = true;
+				}
+			},
 			useY : function(player) {
 				var dom = this.dom;
 				if (dom.hasClass("mortel")) {
@@ -214,6 +253,11 @@ define(["jquery"], function($){
 				var dom = this.dom;
 				if (!dom.attr("active")) return;
 				var index = dom.attr("index");
+				
+				if (!dom.attr("soundPlay")) {
+					dom.attr("soundPlay", true);
+					player.playSound("/tremor.mp3");
+				}
 				
 				var speed1 = 1;
 				if (dom.attr("vitesse")) speed1 = dom.attr("vitesse");
@@ -235,6 +279,7 @@ define(["jquery"], function($){
 					top : "+="+move+"px"
 				});
 				if (dom.position().top < start - 100) {
+					player.stopSound("/tremor.mp3");
 					var delay = 0;
 					if (dom.attr("delay")) delay = parseInt(dom.attr("delay"));
 					delay++;
@@ -251,6 +296,8 @@ define(["jquery"], function($){
 					}
 				}
 				else if (dom.position().top >= start) {
+					dom.removeAttr("soundPlay");
+					player.playSound("/boom.mp3");
 					dom.attr("delay", 0);
 					dom.css({
 						top : "="+start+"px"

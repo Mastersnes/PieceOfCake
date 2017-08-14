@@ -19,15 +19,77 @@
 /**
 * Boulangerie
 **/
-#cinematique .cinematique-boulangerie1-fr {
-	background-image: url("../img/game/boulangerie/cinematique/cinematique-boulangerie1-fr.jpg");	
+#cinematique .boulangerie1-fr {
+	background-image: url("../img/game/boulangerie/cinematique/1-fr.jpg");	
 }
-#cinematique .cinematique-boulangerie1-en {
-	background-image: url("../img/game/boulangerie/cinematique/cinematique-boulangerie1-en.jpg");	
+#cinematique .boulangerie1-en {
+	background-image: url("../img/game/boulangerie/cinematique/1-en.jpg");	
 }
-#cinematique .cinematique-boulangerie2-fr {
-	background-image: url("../img/game/boulangerie/cinematique/cinematique-boulangerie2-fr.jpg");	
+#cinematique .boulangerie2-fr {
+	background-image: url("../img/game/boulangerie/cinematique/2-fr.jpg");	
 }
-#cinematique .cinematique-boulangerie2-en {
-	background-image: url("../img/game/boulangerie/cinematique/cinematique-boulangerie2-en.jpg");	
+#cinematique .boulangerie2-en {
+	background-image: url("../img/game/boulangerie/cinematique/2-en.jpg");	
+}
+#cinematique .boulangerie3-fr {
+	background-image: url("../img/game/boulangerie/cinematique/3-fr.jpg");	
+}
+#cinematique .boulangerie3-en {
+	background-image: url("../img/game/boulangerie/cinematique/3-en.jpg");	
+}
+#cinematique .boulangerie4-fr {
+	background-image: url("../img/game/boulangerie/cinematique/4-fr.jpg");	
+}
+#cinematique .boulangerie4-en {
+	background-image: url("../img/game/boulangerie/cinematique/4-en.jpg");	
+}
+
+/**
+* Cuisine
+**/
+#cinematique .cuisine1-fr {
+	background-image: url("../img/game/cuisine/cinematique/1-fr.jpg");	
+}
+#cinematique .cuisine1-en {
+	background-image: url("../img/game/cuisine/cinematique/1-en.jpg");	
+}
+#cinematique .cuisine2-fr {
+	background-image: url("../img/game/cuisine/cinematique/2-fr.jpg");	
+}
+#cinematique .cuisine2-en {
+	background-image: url("../img/game/cuisine/cinematique/2-en.jpg");	
+}
+
+/**
+* End
+**/
+#cinematique .end1-fr {
+	background-image: url("../img/game/end/cinematique/1-fr.jpg");	
+}
+#cinematique .end1-en {
+	background-image: url("../img/game/end/cinematique/1-en.jpg");	
+}
+#cinematique .end2-fr {
+	background-image: url("../img/game/end/cinematique/2-fr.jpg");	
+}
+#cinematique .end2-en {
+	background-image: url("../img/game/end/cinematique/2-en.jpg");	
+}
+#cinematique .end3-fr {
+	background-image: url("../img/game/end/cinematique/3-fr.jpg");	
+}
+#cinematique .end3-en {
+	background-image: url("../img/game/end/cinematique/3-en.jpg");	
+}
+#cinematique .end4-fr {
+	background-image: url("../img/game/end/cinematique/4-fr.jpg");	
+}
+#cinematique .end4-en {
+	background-image: url("../img/game/end/cinematique/4-en.jpg");	
+}
+#cinematique .end5-fr {
+	background-image: url("../img/game/end/cinematique/5-fr.jpg");	
+}
+#cinematique .end5-en {
+	background-image: url("../img/game/end/cinematique/5-en.jpg");	
 }

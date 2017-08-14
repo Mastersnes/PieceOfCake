@@ -8,7 +8,7 @@
 	height: 100%;
 }
 .plan.background {
-	z-index: -2;
+	z-index: -100;
 	background-repeat: repeat-x;
 	background-size: auto 100%;
 }
@@ -16,7 +16,7 @@
 	z-index: 0;
 }
 .plan.frontground {
-	z-index: 1;
+	z-index: 100;
 	background-repeat: repeat-x;
 	background-size: auto 100%;
 }
@@ -27,7 +27,7 @@
 	background-size: 100% 100%;
 }
 .back {
-	z-index: -1;
+	z-index: -50;
 	position: absolute;
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
@@ -88,7 +88,7 @@
 	top : -9999px;
 }
 #end {
-	z-index: 10000;
+	z-index: 9000;
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 	background-image: url("../img/menu/menu-fond.jpg");

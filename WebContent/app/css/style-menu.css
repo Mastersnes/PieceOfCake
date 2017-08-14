@@ -84,15 +84,18 @@ ul.popup-menu > li:hover {
 }
 
 .popup .close {
-	border-radius: 180px;
-	-webkit-border-radius: 180px;
-	-moz-border-radius: 180px;
-	background: darkred;
-	opacity : 0.8;
+	width: 30px; height: 30px;
+	position: absolute;
+	top: -18vh;
+	right: -7vw;
+	background-image: url("../img/menu/croix.png");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	opacity : 1;
 }
 
 .flag-container {
-	height: 0;
+	height: 40%;
 }
 .flag {
 	cursor: pointer;

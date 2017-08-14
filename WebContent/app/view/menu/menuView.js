@@ -3,18 +3,21 @@ define(["jquery",
         'underscore',
         "app/utils/utils",
         "app/data/textes",
+        "app/utils/mediatheque",
         "text!app/template/menu/menu.html",
         "app/view/game/gameView",
         "app/view/menu/loadView",
         "app/view/menu/optionView",
         "app/view/menu/creditView",
         "app/view/menu/partenaireView"], 
-function($, _, Utils, Textes, page, GameView, LoadView, OptionView, CreditView, PartenaireView) {
+function($, _, Utils, Textes, Mediatheque, page, GameView, LoadView, OptionView, CreditView, PartenaireView) {
 	'use strict';
 
 	return function() {
 		this.init = function() {
 			this.el = $("#app");
+			this.mediatheque = new Mediatheque();
+			this.mediatheque.play("/music/menu.mp3");
 			this.render();
 		};
 
@@ -49,10 +52,10 @@ function($, _, Utils, Textes, page, GameView, LoadView, OptionView, CreditView, 
 		};
 		
 		this.newGame = function() {
-			new GameView(this, false, null, Textes);
+			new GameView(this, false, null, Textes, this.mediatheque);
 		};
 		this.loadGame = function(code) {
-			new GameView(this, true, code, Textes);
+			new GameView(this, true, code, Textes, this.mediatheque);
 		};
 		
 		this.init();

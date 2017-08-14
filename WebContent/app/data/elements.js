@@ -5,11 +5,24 @@ define(["jquery", "app/data/actions"], function($, Actions){
 		 * Plateformes
 		 */
 		"eclair-choco" : {action: Actions.get("ralenti")},
-		"eclair-vanille" : {action : Actions.get("glisse")},
-		"eclair-fraise" : {action : Actions.get("tombe")},
-		"choux" : {action : Actions.get("bouge-verticale")},
-		"macaron" : {action : Actions.get("rebondi")},
+		"eclair-vanille" : {
+			sound : "/slide.mp3",
+			action : Actions.get("glisse")
+		},
+		"eclair-fraise" : {
+			sound : "/effort.mp3",
+			action : Actions.get("tombe")
+		},
+		"choux" : {
+			sound : "/pouic.mp3",
+			action : Actions.get("bouge-verticale")
+		},
+		"macaron" : {
+			sound : "/boing.mp3",
+			action : Actions.get("rebondi")
+		},
 		"muffin" : { // EXPLOSE
+			sound : "/psss.mp3",
 			hitbox : {
 				x : 94,
 				y : 80,
@@ -18,11 +31,25 @@ define(["jquery", "app/data/actions"], function($, Actions){
 			},
 			action : Actions.get("explose")
 		},
+		"gateau-fraise" : {
+			hitbox : {
+				x : 0,
+				y : 10,
+				w : 170,
+				h : 100
+			},
+			sound : "/ahha.mp3",
+			action : {}
+		},
 		"fraise" : {action : Actions.get("bouge-tue")},
 		"citron" : {action : Actions.get("bouge-tue")},
-		"gateau-choco" : {action : Actions.get("bouton")},
+		"gateau-choco" : {
+			sound : "/pop.mp3",
+			action : Actions.get("bouton")
+		},
 		"brownie" : {action : Actions.get("porte")},
-		"gaufrette" : { // S'OUVRE ET DEVIENT MORTEL EN TOMBANT
+		"gaufrette" : {
+			sound : "/crack.mp3",
 			hitbox : {
 				x : 0,
 				y : 0,
@@ -32,6 +59,7 @@ define(["jquery", "app/data/actions"], function($, Actions){
 			action : Actions.get("checkpoint")
 		},
 		"banane" : {
+			sound : "/win.mp3",
 			hitbox : {
 				x : 10,
 				y : 50,
@@ -44,7 +72,10 @@ define(["jquery", "app/data/actions"], function($, Actions){
 				}
 			}
 		},
-		"beurre" : {action : Actions.get("glisse")},
+		"beurre" : {
+			sound : "/zouip.mp3",
+			action : Actions.get("glisse")
+		},
 		"oeuf" : { // S'OUVRE ET LANCE SA COQUILLE
 			action : {
 				useY : function(player) {
@@ -144,20 +175,34 @@ define(["jquery", "app/data/actions"], function($, Actions){
 				}
 			}
 		},
+		"rouleau" : {
+			sound : "/rouleau.mp3",
+			action : {}
+		},
+		"chocolat" : {
+			sound : "/ahh.mp3",
+			action : {}
+		},
 		"noisette1" : {action : Actions.get("bouge-tue")},
 		"noisette2" : {action : Actions.get("bouge-tue")},
 		"noisette3" : {action : Actions.get("bouge-tue")},
 		"noisette4" : {action : Actions.get("bouge-tue")},
-		"pomme" : {action : Actions.get("rebondi")},
+		"pomme" : {
+			sound : "/boing.mp3",
+			action : Actions.get("rebondi")
+		 },
 		"poire" : {
+			sound : "/poire.mp3",
 			hitbox : {
 				x : 20,
 				y : 20,
 				w : 130,
 				h : 120
-			}
+			},
+			action : {}
 		},
 		"pate" : {
+			sound : "/cat.mp3",
 			hitbox : {
 				x : 0,
 				y : 50,
@@ -166,7 +211,10 @@ define(["jquery", "app/data/actions"], function($, Actions){
 			},
 			action : Actions.get("ralenti")
 		},
-		"mochi" : {action : Actions.get("bouton")},
+		"mochi" : {
+			sound : "/cute.mp3",
+			action : Actions.get("bouton")
+		},
 		"farine" : { // S'OUVRE ET DEVIENT MORTEL EN TOMBANT
 			hitbox : {
 				x : 0,
@@ -176,18 +224,97 @@ define(["jquery", "app/data/actions"], function($, Actions){
 			},
 			action : Actions.get("porte")
 		},
-		"sucre" : {action : Actions.get("checkpoint")},
-		"coeur" : {
-			action : { 
-				useX : function(player) {
-					var dom = this.dom;
-					player.flag.point++;
-					dom.hide();
-				},
+		"sucre" : {
+			sound : "/crack.mp3",
+			action : Actions.get("checkpoint")
+		},
+		"date" : {
+			sound : "/date.mp3",
+			action : Actions.get("bouge-verticale")
+		},
+		"raisin-blanc" : {action : Actions.get("bouge-tue")},
+		"raisin-noir" : {action : Actions.get("bouge-tue")},
+		"yahourt" : { // ENGLOUTI
+			sound : "/hmm.mp3",
+			hitbox : {
+				x : 50,
+				y : 60,
+				w : 230,
+				h : 270
+			},
+			action : {
 				useY : function(player) {
 					var dom = this.dom;
-					player.flag.point++;
-					dom.hide();
+					var index = dom.attr("index");
+					var delay = 0;
+					if (dom.attr("delay")) delay = parseInt(dom.attr("delay"));
+					
+					delay++;
+					dom.attr("delay", delay);
+					if (delay >= 10) {
+						dom.attr("delay", 0);
+						var saut = 1;
+						if (dom.attr("saut")) saut = parseInt(dom.attr("saut"));
+						
+						saut++;
+						dom.attr("saut", saut);
+						dom.removeClass(function (index, className) {
+						    return (className.match (/\bsaut-\S+/g) || []).join(' ');
+						});
+						dom.addClass("saut-"+saut);
+						
+						if (saut == 3) {
+							dom.attr("delay", 0);
+							var hitbox = this.parent.hitbox;
+							var top = dom.position().top + hitbox.y;
+							dom.css({
+								"z-index" : 50
+							});
+							$("#player").animate({
+								top : top + "px"
+							}, function() {
+								dom.css({
+									"z-index" : 0
+								});
+								player.flag.dead = true;
+								dom.removeClass(function (index, className) {
+								    return (className.match (/\bsaut-\S+/g) || []).join(' ');
+								});
+								dom.removeAttr("saut");
+							});
+						}
+					}
+				},
+				reset : function(player) {
+					var dom = this.dom;
+					var index = dom.attr("index");
+					dom.attr("delay", 0);
+					dom.removeClass(function (index, className) {
+					    return (className.match (/\bsaut-\S+/g) || []).join(' ');
+					});
+					dom.removeAttr("saut");
+				}
+			}
+		},
+		"coeur" : {
+			sound : "coin.mp3",
+			float : true,
+			action : {
+				useY : function(player) {
+					var dom = this.dom;
+					if (!dom.attr("use")) {
+						player.flag.point++;
+						dom.attr("use", true);
+						dom.hide();
+					}
+				},
+				useX : function(player) {
+					var dom = this.dom;
+					if (!dom.attr("use")) {
+						player.flag.point++;
+						dom.attr("use", true);
+						dom.hide();
+					}
 				}
 			}
 		},

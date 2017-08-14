@@ -1,3 +1,8 @@
+.element.coeur {
+	width: 15; height: 15;
+	background-image: url("../img/game/coeur/coeur.png");
+}
+
 /**
 * Boulangerie
 **/
@@ -275,6 +280,30 @@
 	width: 220; height: 330;
 	background-image: url("../img/game/cuisine/back/lavabo.png");
 }
+.back.etagere-cuisine-vide1 {
+	width: 220; height: 168;
+	background-image: url("../img/game/cuisine/back/etagere/vide.png");
+}
+.back.etagere-cuisine-vide2 {
+	width: 220; height: 168;
+	background-image: url("../img/game/cuisine/back/etagere/vide2.png");
+}
+.back.etagere-cuisine-epice {
+	width: 220; height: 168;
+	background-image: url("../img/game/cuisine/back/etagere/epice.png");
+}
+.back.etagere-cuisine-sopalin {
+	width: 130; height: 90;
+	background-image: url("../img/game/cuisine/back/etagere/sopalin.png");
+}
+.back.etagere-cuisine-pate {
+	width: 220; height: 165;
+	background-image: url("../img/game/cuisine/back/etagere/pate.png");
+}
+.back.lustre-cuisine {
+	width: 220; height: 220;
+	background-image: url("../img/game/cuisine/back/lustre.png");
+}
 
 /**
 * Elements de premier plan
@@ -408,4 +437,55 @@
 }
 .element.sucre.active {
 	background-image: url("../img/game/cuisine/sucre/sucre-active.png");
+}
+
+/**
+* Rouleau
+**/
+.element.rouleau {
+	width: 230; height: 55;
+	background-image: url("../img/game/cuisine/rouleau/rouleau.png");
+}
+.element.rouleau.saut {
+	background-image: url("../img/game/cuisine/rouleau/rouleau-saut.png");
+}
+
+/**
+* Yahourt
+**/
+.element.yahourt {
+	width: 330; height: 345;
+	background-image: url("../img/game/cuisine/yahourt/yahourt-0.png");
+}
+.element.yahourt.saut {
+	background-image: url("../img/game/cuisine/yahourt/yahourt-1.png");
+}
+.element.yahourt.saut-2 {
+	background-image: url("../img/game/cuisine/yahourt/yahourt-2.png");
+}
+.element.yahourt.saut-3 {
+	background-image: url("../img/game/cuisine/yahourt/yahourt-3.png");
+}
+
+/**
+* Date
+**/
+.element.date {
+	width: 115; height: 50;
+	background-image: url("../img/game/cuisine/date/date.png");
+}
+.element.date.saut {
+	background-image: url("../img/game/cuisine/date/date-saut.png");
+}
+
+/**
+* Raisins
+**/
+.element.raisin-blanc {
+	width: 35; height: 45;
+	background-image: url("../img/game/cuisine/raisins/raisin-blanc.png");
+}
+.element.raisin-noir {
+	width: 35; height: 45;
+	background-image: url("../img/game/cuisine/raisins/raisin-noir.png");
 }

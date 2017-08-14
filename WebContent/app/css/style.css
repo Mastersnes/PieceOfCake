@@ -46,11 +46,15 @@ ul li {
 	position: absolute;
 	width: 100vw;
 	height: 100vh;
+	
+	background-image: url("../img/menu/popup.png");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	
 	top: 0;
 	display: none;
 }
 .popup > .content {
-	background-color: #4c4c4c;
 	width: 70%;
 	height: 70%;
 	margin-left: auto;
@@ -72,6 +76,6 @@ ul li {
 	font-size: 1.7em;
 	font-family: fantasy;
 	text-align: center;
-	margin-top: 50vh;
-	transform: translateY(80%);
+	margin-top: 60vh;
+	width: 65vw;
 }

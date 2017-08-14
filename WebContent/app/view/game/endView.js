@@ -11,13 +11,16 @@ function($, _, page) {
 			this.Textes = Textes;
 		};
 
-		this.render = function() {
+		this.render = function(point) {
 			_.templateSettings.variable = "data";
 			var template = _.template(page);
 			var templateData = {
 					text : this.Textes
 			};
 			$(this.el).html(template(templateData));
+			
+			$(this.el).find("#point").html(point);
+			
 			$(this.el).show();
 			
 			this.makeEvents();

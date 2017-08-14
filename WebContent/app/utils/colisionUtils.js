@@ -53,35 +53,32 @@ define(["jquery", "app/data/elements"], function($, ElementsData){
 				if ((y1 + h1 > y2 && y1 < y2 + h2)) { //Collision Y potentiel
 					if (x0 + w1 > x2 && x0 < x2 + w2) { // Collision Y certaine
 						colision.y = element;
-						if (y1 < y2) position.y = y2 - h1;
-						y0 = position.y;
+						if (!element.float) {
+							if (y1 < y2) position.y = y2 - h1;
+							y0 = position.y;
+						}
 					}
 				}
 				
 				if ((x1 + w1 > x2 && x1 < x2 + w2)) { // Collision X potentiel
 					if (y0 + h1 > y2 && y0 < y2 + h2) { //Collision X certaine
 						colision.x = element;
-						if (x1 > x2+(w2/2)) position.x = x2 + w2;
-						else position.x = x2 - w0 - 10;
+						if (!element.float) {
+							colision.y = null;
+							player.moveEngine.vitesse.y = 0;
+							if (x1 > x2+(w2/2)) position.x = x2 + w2;
+							else position.x = x2 - w0 - 10;
+						}
 					}
 				}
 				
-				if (id == "farine") {
+				if (colision.y == element) {
 					$(".hitbox").css({
 						left : x2,
 						top : y2,
 						width : w2,
 						height : h2
 					});
-				}
-				
-				if (colision.y == element) {
-//					$(".hitbox").css({
-//						left : x2,
-//						top : y2,
-//						width : w2,
-//						height : h2
-//					});
 					$(this).addClass("saut");
 				}else if (element && element.action) {
 					element.action.dom.removeAttr("playSound");
@@ -89,7 +86,7 @@ define(["jquery", "app/data/elements"], function($, ElementsData){
 				}
 			});
 			
-			if (!colision.x) position.x = position.x + acceleration.x;
+			if (!colision.x || colision.x.float) position.x = position.x + acceleration.x;
 			if (!colision.y) position.y = position.y + acceleration.y;
 			
 			if (position.x < 0) position.x = 0;

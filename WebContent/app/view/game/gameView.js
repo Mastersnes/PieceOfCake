@@ -2,18 +2,17 @@
 define(["jquery",
         'underscore',
         "app/utils/utils",
-        "app/utils/mediatheque",
         "text!app/template/game/game.html",
         "app/view/game/stageView",
         "app/view/game/endView"],
-function($, _, Utils, Mediatheque, page, StageView, EndView) {
+function($, _, Utils, page, StageView, EndView) {
 	'use strict';
 
-	return function(parent, load, code, Textes) {
-		this.init = function(parent, load, code, Textes) {
+	return function(parent, load, code, Textes, Mediatheque) {
+		this.init = function(parent, load, code, Textes, Mediatheque) {
 			this.el = $("#app");
 			this.Textes = Textes;
-			this.mediatheque = new Mediatheque();
+			this.mediatheque = Mediatheque;
 			this.stageView = new StageView(this, Textes);
 			this.render(load, code);
 			this.endView = new EndView(Textes);
@@ -39,14 +38,14 @@ function($, _, Utils, Mediatheque, page, StageView, EndView) {
 			else this.stageView.go("boulangerie", 1);
 		};
 		
-		this.gameOver = function() {
-			this.pause = true;
+		this.gameOver = function(point) {
+			this.stageView.pause = true;
 			
-			this.endView.render();
+			this.endView.render(point);
 			
 			$(".game").fadeOut();
 		};
 		
-		this.init(parent, load, code, Textes);
+		this.init(parent, load, code, Textes, Mediatheque);
 	};
 });

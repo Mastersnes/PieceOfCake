@@ -36,7 +36,6 @@ function($, _, Utils, Stages, page) {
 				$(that.el).hide("slow");
 			});
 			$(this.el).find("#loadSave").click(function() {
-				console.log(that.parent);
 				that.parent.loadGame();
 			});
 			$(this.el).find("#loadCode").click(function() {

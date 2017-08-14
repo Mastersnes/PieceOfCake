@@ -16,14 +16,18 @@ define(
 				};
 				this.flag = {
 					move : 0,
+					point : 0,
 					dead : false
 				};
 				this.save = {
 					position : null,
 					lieu : null,
-					stage : null
+					stage : null,
+					point : 0
 				};
 				this.delay = [];
+				
+				this.alreadyLoad = false;
 
 				this.init = function(stage) {
 					this.el = ".game";
@@ -34,14 +38,29 @@ define(
 				};
 
 				this.load = function(save) {
-					if (save) this.save = save;
+					if (save) {
+						this.save = save;
+						this.position.x = this.save.position.x;
+						this.position.y = this.save.position.y;
+						this.flag.point = this.save.point;
+					}
+				};
+				
+				this.render = function() {
 					$(".game .stage").append(stage.createElement({
 						id : "player",
 						x : this.position.x,
 						y : this.position.y
 					}));
-
-					this.makeEvents();
+					
+					if (!this.alreadyLoad) this.makeEvents();
+				};
+				
+				this.stopSound = function (key) {
+					this.stage.mediatheque.stopSound(key);
+				};
+				this.playSound = function (key) {
+					this.stage.mediatheque.playSound(key);
 				};
 
 				this.refresh = function() {
@@ -81,10 +100,11 @@ define(
 					if (colision.x && colision.x.action && colision.x.action.useX) colision.x.action.useX(this);
 					if (colision.y && colision.y.action){
 						var colisionAction = colision.y.action;
+						
 						var playSound = colisionAction.dom.attr("playSound");
 						if (!playSound) {
 							colisionAction.dom.attr("playSound", true);
-							this.stage.mediatheque.playSound(colision.y.sound);
+							this.playSound(colision.y.sound);
 						}
 						if (colisionAction.useY) colisionAction.useY(this);
 					}
@@ -121,31 +141,35 @@ define(
 						this.save.stage = stage;
 					}
 					this.save.position = Utils.clone(this.position);
+					this.save.point = this.flag.point;
+					console.log("save : ", this.save);
 					window.localStorage.setItem(Utils.name, Utils.encode(JSON.stringify(this.save)));
 				};
 
 				this.makeEvents = function() {
+					this.alreadyLoad = true;
+					
 					var that = this;
 					$(document).keydown(function(e) {
 						var code = e.keyCode || e.which;
 						console.log(code);
 						switch (code) {
-						case 39: // DROITE
-							that.flag.move = 1;
-							break;
-						case 37: // GAUCHE
-							that.flag.move = -1;
-							break;
-						case 32: // SAUTE
-							if (!that.moveEngine.flag.tombe)
-								that.moveEngine.saute();
-							break;
-						case 16: // COURS
-							that.moveEngine.flag.cours = true;
-							break;
-						case 27: // PAUSE
-							that.stage.togglePause(that.save);
-							break;
+							case 39: // DROITE
+								that.flag.move = 1;
+								break;
+							case 37: // GAUCHE
+								that.flag.move = -1;
+								break;
+							case 32: // SAUTE
+								if (!that.moveEngine.flag.tombe)
+									that.moveEngine.saute();
+								break;
+							case 16: // COURS
+								that.moveEngine.flag.cours = true;
+								break;
+							case 27: // PAUSE
+								that.stage.togglePause(that.save, that.flag.point);
+								break;
 						};
 						
 					});

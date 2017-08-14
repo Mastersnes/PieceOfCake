@@ -38,6 +38,16 @@ function($, _, Utils, page) {
 				that.Textes.local = "en";
 				parent.render();
 			});
+			$(this.el).find("#fullscreen").click(function() {
+				var elem = $("body")[0];
+				if (elem.requestFullscreen) {
+				  elem.requestFullscreen();
+				} else if (elem.mozRequestFullScreen) {
+				  elem.mozRequestFullScreen();
+				} else if (elem.webkitRequestFullscreen) {
+				  elem.webkitRequestFullscreen();
+				}
+			});
 		};
 		
 		this.show = function() {
