@@ -23,7 +23,8 @@ define(
 				};
 				this.flag = {
 						tombe : true,
-						cours : false
+						cours : false,
+						lockCours : false
 				};
 				this.move = function(accelerationPerso, signe) {
 					var acceleration = Utils.clone(this.acceleration); var vitesse = this.vitesse;

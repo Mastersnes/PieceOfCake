@@ -6,7 +6,7 @@ define(["jquery"], function($){
 		 */
 		"boulangerie1" : {
 			"music" : "/music/boulangerie.mp3",
-			"gagne" : {lieu : "cuisine", stage : 1},
+			"gagne" : {lieu : "boulangerie", stage : 2},
 			"cinematique" : ["cinematique-didactitiel", "boulangerie1", "boulangerie2", "boulangerie3", "boulangerie4"],
 			"start" : {
 				x : 100,
@@ -117,7 +117,99 @@ define(["jquery"], function($){
 			  {id: "fraise", x: 6170, y: 425, vitesse: 3, descente: 5},
 			  {id: "coeur", x: 6305, y: 400},
 			  {id: "citron", x: 6310, y: 425, vitesse: 3, descente: 4},
-			  {id: "banane", x: 6350, y: 420},
+			  {id: "banane", x: 6350, y: 420}
+			]
+		},
+		"boulangerie2" : {
+			"music" : "/music/boulangerie.mp3",
+			"gagne" : {lieu : "cuisine", stage : 1},
+			"cinematique" : null,
+			"start" : {
+				x : 100,
+				y : 200
+			},
+			"back" : [
+			  {id: "niche-vide2", x: 50, y: 200},
+			  {id: "etagere1", x: 275, y: 200},
+			  {id: "lustre", x: 300, y: 0},
+			  {id: "etagere-vide", x: 500, y: 200},
+			  {id: "niche-pain1", x: 1000, y: 100},
+			  {id: "niche-pain3", x: 1225, y: 100},
+			  {id: "niche-baguette", x: 1450, y: 100},
+			  {id: "niche-vide2", x: 1100, y: 300},
+			  {id: "etagere3", x: 1300, y: 300},
+			  {id: "boulanger", x: 1800, y: 100},
+			  {id: "lustre", x: 1800, y: 0},
+			  {id: "etagere-pain1", x: 2000, y: 250},
+			  {id: "niche-pain1", x: 2500, y: 100},
+			  {id: "niche-pain3", x: 2700, y: 150},
+			  {id: "etagere-pain2", x: 3300, y: 200},
+			  {id: "boulanger", x: 3600, y: 100},
+			  {id: "etagere2", x: 4200, y: 100},
+			  {id: "niche-baguette", x: 4600, y: 200},
+			  {id: "etagere4", x: 4900, y: 300},
+			  {id: "etagere-pain3", x: 5300, y: 200},
+			  {id: "etagere-pain4", x: 5500, y: 100},
+			  {id: "lustre", x: 5900, y: 0},
+			  {id: "etagere-pain1", x: 6400, y: 250},
+			  {id: "niche-pain2", x: 6800, y: 100}
+			],
+			"elements" : [
+			  //PARTIE 1
+			  {id: "eclair-cafe", x: -30, y: 250},
+			  {id: "eclair-vanille", x: 300, y: 300},
+			  {id: "citron", x: 580, y: 350, vitesse: 3, descente : 2},
+			  {id: "eclair-vanille", x: 650, y: 350},
+			  {id: "fraise", x: 880, y: 360, vitesse: 3, descente : 4, distance : 150},
+			  {id: "eclair-vanille", x: 1000, y: 400},
+			  {id: "eclair-vanille", x: 1290, y: 350},
+			  {id: "citron", x: 1520, y: 340, vitesse: 2, descente : 3, distance : 150},
+			  {id: "eclair-vanille", x: 1590, y: 300},
+			  {id: "eclair-vanille", x: 1880, y: 250},
+			  {id: "fraise", x: 2150, y: 350, vitesse: 4, descente : 6, distance : 150},
+			  {id: "macaron", x: 2300, y: 450},
+			  {id: "macaron", x: 2600, y: 350},
+			  {id: "citron", x: 2800, y: 320, vitesse : 4, descente : 2, distance : 150},
+			  {id: "choux", x: 3000, y: 300, vitesse : 5, distance : 100},
+			  {id: "choux", x: 3200, y: 350, vitesse : 3},
+			  {id: "choux", x: 3400, y: 400, vitesse : 4},
+			  {id: "eclair-vanille", x: 3600, y: 400},
+			  {id: "fraise", x: 3700, y: 380, vitesse : 2, descente : 3, distance : 150},
+			  {id: "eclair-choco", x: 3800, y: 350},
+			  {id: "citron", x: 3900, y: 340, vitesse : 3, descente : 2, distance : 150},
+			  {id: "eclair-vanille", x: 4000, y: 300},
+			  {id: "fraise", x: 4100, y: 290, vitesse : 4, descente : 3, distance : 150},
+			  {id: "eclair-cafe", x: 4200, y: 300},
+			  {id: "eclair-cafe", x: 4400, y: 300},
+			  {id: "gateau-choco", x: 4250, y: 280, cible : "porte2"},
+			  {id: "brownie", x: 4400, y: 180, vitesse : 5, descente : 5, ref : "porte2"},
+			  {id: "gaufrette", x: 4500, y: 300},
+			  
+			  {id: "eclair-cafe", x: 4700, y: 300},
+			  {id: "gateau-choco", x: 4750, y: 280, cible : "porte4"},
+			  
+			  {id: "eclair-cafe", x: 4900, y: 250},
+			  {id: "gateau-choco", x: 4950, y: 230, cible : "porte3"},
+			  
+			  {id: "eclair-cafe", x: 5100, y: 250},
+			  {id: "brownie", x: 5100, y: 130, vitesse : 5, descente : 5, ref : "porte3"},
+			  {id: "fraise", x: 5300, y: 200, vitesse : 2, descente : 3},
+			  
+			  {id: "eclair-cafe", x: 5300, y: 300},
+			  {id: "gateau-choco", x: 5400, y: 280, cible : "porte5"},
+			  
+			  {id: "eclair-cafe", x: 5500, y: 300},
+			  {id: "brownie", x: 5600, y: 180, vitesse : 1, descente : 5, ref : "porte4"},
+			  
+			  {id: "eclair-cafe", x: 5750, y: 280},
+			  {id: "brownie", x: 5800, y: 120, vitesse : 2, descente : 4, ref : "porte5"},
+			  
+			  {id: "eclair-fraise", x: 6000, y: 230},
+			  {id: "eclair-fraise", x: 6200, y: 200},
+			  {id: "eclair-fraise", x: 6500, y: 180},
+			  {id: "eclair-fraise", x: 6700, y: 150},
+			  {id: "eclair-vanille", x: 6900, y: 130},
+			  {id: "banane", x: 7400, y: 500}
 			]
 		},
 		"cuisine1" : {
