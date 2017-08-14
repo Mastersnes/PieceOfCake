@@ -81,6 +81,8 @@
 .text {
 	font-family: fantasy;
 	font-size : 2em;
+	max-width: 100%;
+	word-wrap: break-word;
 }
 .preload {
 	position: absolute;

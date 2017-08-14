@@ -27,10 +27,12 @@ define(["jquery"], function($){
 				if (dom.attr("acceleration")) acceleration = parseFloat(dom.attr("acceleration"));
 				player.moveEngine.acceleration.x = vitesse;
 				player.flag.move = player.moveEngine.marche.direction;
+				player.flag.glisse = true;
 				dom.attr("vitesse", vitesse + acceleration);
 			},
 			reset : function(player) {
 				player.moveEngine.acceleration.x = 1;
+				player.flag.glisse = false;
 			}
 		},
 		"bouge-verticale" : { // BOUGE VERTICALEMENT

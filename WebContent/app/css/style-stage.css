@@ -304,6 +304,10 @@
 	width: 220; height: 220;
 	background-image: url("../img/game/cuisine/back/lustre.png");
 }
+.back.frigo {
+	width: 220; height: 400;
+	background-image: url("../img/game/cuisine/back/frigo.png");
+}
 
 /**
 * Elements de premier plan

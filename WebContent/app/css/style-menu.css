@@ -1,6 +1,18 @@
 /**
 * Menu
 **/
+.bebel {
+	z-index : 10000;
+	background-color : white;
+	background-image: url("../img/menu/bebel.png");
+	background-repeat: no-repeat;
+	background-size: 50% 50%;
+	background-position: 50% 50%;
+}
+
+/**
+* Menu
+**/
 .menu-page {
 	background-image: url("../img/menu/menu-fond.jpg");
 	background-repeat: no-repeat;

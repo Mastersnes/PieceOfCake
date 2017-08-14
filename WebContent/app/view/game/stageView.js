@@ -111,6 +111,7 @@ function($, _, Utils, CinematiqueView, Stages, PlayerView) {
 				this.moveStage();
 				
 				if (player.flag.dead) {
+					player.flag.deathNb++;
 					this.mediatheque.playSound("/slurp.mp3");
 					player.flag.dead = false;
 					player.reset();
@@ -132,13 +133,14 @@ function($, _, Utils, CinematiqueView, Stages, PlayerView) {
 			}, 40);
 		};
 		
-		this.togglePause = function(save, point) {
+		this.togglePause = function(save, point, deathNb) {
 			
 			this.pause = !this.pause;
 			if (this.pause) {
 				var code = Utils.encode(JSON.stringify(save));
 				$("#pause #code").html(code);
 				$("#pause #point").html(point);
+				$("#pause #deathNb").html(deathNb);
 				$("#pause").show();
 			}else {
 				$("#pause").hide();

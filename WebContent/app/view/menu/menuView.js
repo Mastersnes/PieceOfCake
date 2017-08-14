@@ -30,6 +30,10 @@ function($, _, Utils, Textes, Mediatheque, page, GameView, LoadView, OptionView,
 			this.el.html(template(templateData));
 			
 			this.makeEvents();
+			
+			setTimeout(function() {
+				$(".bebel").fadeOut("slow");
+			}, 1000);
 		};
 		
 		this.makeEvents = function() {

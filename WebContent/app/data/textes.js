@@ -84,6 +84,10 @@ define(["jquery", "app/data/actions"], function($, Actions){
 			fr : "Point",
 			en : "Point"
 		},
+		"deathNb" : {
+			fr : "Compteur de mort",
+			en : "Death counter"
+		},
 		"end0" : {
 			fr : "F&eacute;licitation, vous avez termin&eacute; le jeu avec : <span id='point'></span> Points",
 			en : "Congratulations, you won with : <span id='point'></span> Points"

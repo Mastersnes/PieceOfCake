@@ -17,13 +17,16 @@ define(
 				this.flag = {
 					move : 0,
 					point : 0,
-					dead : false
+					deathNb : 0,
+					dead : false,
+					glisse : false
 				};
 				this.save = {
 					position : null,
 					lieu : null,
 					stage : null,
-					point : 0
+					point : 0,
+					deathNb : 0
 				};
 				this.delay = [];
 				
@@ -43,6 +46,7 @@ define(
 						this.position.x = this.save.position.x;
 						this.position.y = this.save.position.y;
 						this.flag.point = this.save.point;
+						this.flag.deathNb = this.save.deathNb;
 					}
 				};
 				
@@ -142,6 +146,7 @@ define(
 					}
 					this.save.position = Utils.clone(this.position);
 					this.save.point = this.flag.point;
+					this.save.deathNb = this.flag.deathNb;
 					console.log("save : ", this.save);
 					window.localStorage.setItem(Utils.name, Utils.encode(JSON.stringify(this.save)));
 				};
@@ -155,10 +160,10 @@ define(
 						console.log(code);
 						switch (code) {
 							case 39: // DROITE
-								that.flag.move = 1;
+								if (!that.flag.glisse)that.flag.move = 1;
 								break;
 							case 37: // GAUCHE
-								that.flag.move = -1;
+								if (!that.flag.glisse)that.flag.move = -1;
 								break;
 							case 32: // SAUTE
 							case 38:
@@ -178,7 +183,7 @@ define(
 								}
 								break;
 							case 27: // PAUSE
-								that.stage.togglePause(that.save, that.flag.point);
+								that.stage.togglePause(that.save, that.flag.point, that.flag.deathNb);
 								break;
 						};
 						
@@ -188,7 +193,7 @@ define(
 						switch (code) {
 						case 39: // DROITE
 						case 37: // GAUCHE
-							that.flag.move = 0;
+							if (!that.flag.glisse)that.flag.move = 0;
 							break;
 						case 16: // MARCHE
 							if (!that.moveEngine.flag.lockCours) {
