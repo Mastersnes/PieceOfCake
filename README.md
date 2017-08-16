@@ -4,7 +4,7 @@ Qui a été dévellopé à l'issus de la Short and Sweet Jam de itch.io : https:
 
 Il s'agit d'un jeu de plateforme dans lequel le joueur incarnera un petit garcon cherchant à trouver le gateau idéal pour son amoureuse.
 
-Le joueur sera evoluera dans divers lieu où il devra affronter des dangers divers.
+Le joueur evoluera dans divers lieu où il devra affronter des dangers divers.
 
 Bon test, et n’hésitez pas à revenir vers nous pour plus d'informations.
 
