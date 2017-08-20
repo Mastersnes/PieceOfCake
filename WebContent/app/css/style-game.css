@@ -98,8 +98,16 @@
 .hitbox {
 	position: absolute;
 	z-index: 10000;
-	background-color: red;
 	opacity : 0.5;
+}
+.hitbox.perso {
+	background-color: red;
+}
+.hitbox.y {
+	background-color: green;
+}
+.hitbox.x {
+	background-color: blue;
 }
 .shake {
     animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;

@@ -10,7 +10,7 @@ define(["jquery"], function($){
 			"cinematique" : ["cinematique-didactitiel", "boulangerie1", "boulangerie2", "boulangerie3", "boulangerie4"],
 			"start" : {
 				x : 100,
-				y : 450
+				y : 400
 			},
 			"back" : [
 			  {id: "etagere-vide", x: 50, y: 200},
