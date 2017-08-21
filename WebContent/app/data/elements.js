@@ -14,6 +14,12 @@ define(["jquery", "app/data/actions"], function($, Actions){
 			action : Actions.get("tombe")
 		},
 		"choux" : {
+		    hitbox : {
+		        x : 20,
+		        y : 0,
+		        w : 80,
+		        h : 50
+		    },
 			sound : "/pouic.mp3",
 			action : Actions.get("bouge-verticale")
 		},

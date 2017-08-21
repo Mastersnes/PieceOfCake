@@ -12,9 +12,9 @@ define(["jquery", "app/data/elements"], function($, ElementsData){
 				droite : null
 			};
 			
-			var x0 = position.x; var x1 = x0 + acceleration.x;
+			var x0 = position.x; var x1 = x0 + acceleration.x + 15;
 			var y0 = position.y; var y1 = y0 + acceleration.y;
-			var w0 = $("#player").width(); var w1 = w0;
+			var w0 = $("#player").width(); var w1 = w0 - 30;
 			var h0 = $("#player").height(); var h1 = h0;
 			
 			$(".hitbox.perso").css({
@@ -48,6 +48,10 @@ define(["jquery", "app/data/elements"], function($, ElementsData){
 				
 				var x2 = $(this).position().left; var y2 = $(this).position().top;
 				var w2 = $(this).width(); var h2 = $(this).height();
+				if (element.hitbox) {
+                    x2 = x2 + element.hitbox.x; y2 = y2 + element.hitbox.y;
+                    w2 = element.hitbox.w; h2 = element.hitbox.h;
+                }
 				
 				if (x1 + w1 > x2 && x1 < x2 + w2) {
 					if (y1 + h1 > y2 && y1 < y2 + h2) { // COLLISION !
@@ -70,60 +74,26 @@ define(["jquery", "app/data/elements"], function($, ElementsData){
 					}
 				}
 				
-				if (col.element) colision[col.sens] = col.element;
+				if (col.element) {
+				    colision[col.sens] = col.element;
+				    $(".hitbox."+col.sens).show();
+				    $(".hitbox."+col.sens).css({
+	                    left : x2,
+	                    top : y2,
+	                    width : w2,
+	                    height : h2
+	                });
+				}
+				else if (element.action.reset) element.action.reset(player);
 			});
 			
 			/**
              * DEBUG
              */
-			var x2, y2, w2, h2;
-            if (colision.bas) {
-                x2 = colision.bas.action.dom.position().left; w2 = colision.bas.action.dom.width();
-                y2 = colision.bas.action.dom.position().top; h2 = colision.bas.action.dom.height();
-                $(".hitbox.bas").show();
-                $(".hitbox.bas").css({
-                    left : x2,
-                    top : y2,
-                    width : w2,
-                    height : h2
-                });
-            }else $(".hitbox.bas").hide();
-            
-            if (colision.haut) {
-                x2 = colision.haut.action.dom.position().left; w2 = colision.haut.action.dom.width();
-                y2 = colision.haut.action.dom.position().top; h2 = colision.haut.action.dom.height();
-                $(".hitbox.haut").show();
-                $(".hitbox.haut").css({
-                    left : x2,
-                    top : y2,
-                    width : w2,
-                    height : h2
-                });
-            }else $(".hitbox.haut").hide();
-            
-            if (colision.gauche) {
-                x2 = colision.gauche.action.dom.position().left; w2 = colision.gauche.action.dom.width();
-                y2 = colision.gauche.action.dom.position().top; h2 = colision.gauche.action.dom.height();
-                $(".hitbox.gauche").show();
-                $(".hitbox.gauche").css({
-                    left : x2,
-                    top : y2,
-                    width : w2,
-                    height : h2
-                });
-            }else $(".hitbox.gauche").hide();
-            
-            if (colision.droite) {
-                x2 = colision.droite.action.dom.position().left; w2 = colision.droite.action.dom.width();
-                y2 = colision.droite.action.dom.position().top; h2 = colision.droite.action.dom.height();
-                $(".hitbox.droite").show();
-                $(".hitbox.droite").css({
-                    left : x2,
-                    top : y2,
-                    width : w2,
-                    height : h2
-                });
-            }else $(".hitbox.droite").hide();
+            if (!colision.bas) $(".hitbox.bas").hide();
+            if (!colision.haut) $(".hitbox.haut").hide();
+            if (!colision.gauche) $(".hitbox.gauche").hide();
+            if (!colision.droite) $(".hitbox.droite").hide();
             /**
              *  -- END DEBUG
              */
@@ -131,15 +101,18 @@ define(["jquery", "app/data/elements"], function($, ElementsData){
             /**
              * Si pas de colision on bouge
              */
-			if (!colision.gauche && !colision.droite) position.x = position.x + acceleration.x;
-			if (!colision.haut && !colision.bas) position.y = position.y + acceleration.y;
+			if ((!colision.gauche || colision.gauche.float) && (!colision.droite || colision.droite.float)) position.x = position.x + acceleration.x;
+			if ((!colision.haut || colision.haut.float)) position.y = position.y + acceleration.y;
 			
 			/**
-			 * Si colision haute on rectifie le tir
+			 * Si colision haute ou basse on rectifie le tir
 			 */
-			if (colision.haut) {
+			if (colision.haut && !colision.haut.float) {
 			    position.y = colision.haut.action.dom.position().top - (h1 - 10);
 			    player.moveEngine.vitesse.y = 1;
+			}else if (colision.bas && !colision.bas.float) {
+			    position.y = colision.bas.action.dom.position().top + colision.bas.action.dom.height();
+                player.moveEngine.vitesse.y = 1;
 			}
 			
 			if (position.x < 0) position.x = 0;
