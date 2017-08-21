@@ -103,11 +103,17 @@
 .hitbox.perso {
 	background-color: red;
 }
-.hitbox.y {
+.hitbox.haut {
 	background-color: green;
 }
-.hitbox.x {
+.hitbox.bas {
 	background-color: blue;
+}
+.hitbox.gauche {
+	background-color: pink;
+}
+.hitbox.droite {
+	background-color: yellow;
 }
 .shake {
     animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;

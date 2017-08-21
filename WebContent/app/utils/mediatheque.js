@@ -37,7 +37,7 @@ define(["jquery"], function($){
 				this.load(key);
 			}
 			try {
-				this.sounds[key].play();
+				//this.sounds[key].play();
 			}catch (e) {
 				this.load(key);
 			}

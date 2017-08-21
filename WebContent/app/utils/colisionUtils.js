@@ -4,12 +4,12 @@ define(["jquery", "app/data/elements"], function($, ElementsData){
 		/**
 		* Permet d'appeler un WS
 		**/
-		check : function(acceleration, position, map, player) {
+		check : function(acceleration, position, player) {
 			var colision = {
-				haut : false,
-				bas : false,
-				gauche : false,
-				droite : false
+				haut : null,
+				bas : null,
+				gauche : null,
+				droite : null
 			};
 			
 			var x0 = position.x; var x1 = x0 + acceleration.x;
@@ -26,8 +26,13 @@ define(["jquery", "app/data/elements"], function($, ElementsData){
 			
 			if (y1 > 768) colision.haut = true;
 			$(".stage .element:not(#player):visible").each(function() {
-				if ($(this).offset().left - $(this).width() < -1000) return true;
+			    if ($(this).offset().left - $(this).width() < -1000) return true;
 				if ($(this).offset().left > $(".game").width() + 1000) return true;
+				
+				var col = {
+				        element : null,
+				        sens : null
+				};
 				
 				$(this).removeClass("saut");
 				var id = $(this).attr("id");
@@ -35,6 +40,10 @@ define(["jquery", "app/data/elements"], function($, ElementsData){
 				if (element.action) {
 					element.action.dom = $(this);
 					element.action.parent = element;
+				}else {
+				    element.action = {
+				            dom : $(this)
+				    };
 				}
 				
 				var x2 = $(this).position().left; var y2 = $(this).position().top;
@@ -42,47 +51,96 @@ define(["jquery", "app/data/elements"], function($, ElementsData){
 				
 				if (x1 + w1 > x2 && x1 < x2 + w2) {
 					if (y1 + h1 > y2 && y1 < y2 + h2) { // COLLISION !
-						
-						if (x0 + w0 < x2 && x1 + w1 > x2) colision.gauche = element;
-						if (x0 > x2 + w2 && x1 < x2 + w2) colision.droite = element;
-						
-						if (y0 + h0 < y2 && y1 + h1 > y2) colision.haut = element;
-						if (y0 < y2 + h2 && y1 < y2 + h2) colision.bas = element;
+					    if (y1 + h1 <= y2 + (h2/2)) col = {
+                                element : element,
+                                sens : "haut"
+                        };
+                        if (col.element == null && y1 > y2 + (h2/2)) col = {
+                                element : element,
+                                sens : "bas"
+                        };
+						if (col.element == null && x1 + w1 <= x2 + (w2/2)) col = {
+						        element : element,
+						        sens : "gauche"
+						};
+						if (col.element == null && x1 > x2 + (w2/2)) col = {
+                                element : element,
+                                sens : "droite"
+                        };
 					}
 				}
 				
-				if (colision.bas == element || colision.haut == element) {
-					$(".hitbox.y").show();
-					$(".hitbox.y").css({
-						left : x2,
-						top : y2,
-						width : w2,
-						height : h2
-					});
-				}else {
-					$(".hitbox.y").hide();
-				}
-				if (colision.gauche == element || colision.droite == element) {
-					$(".hitbox.x").show();
-					$(".hitbox.x").css({
-						left : x2,
-						top : y2,
-						width : w2,
-						height : h2
-					});
-				}else {
-					$(".hitbox.y").hide();
-				}
-				
-				if (colision.haut == element) $(this).addClass("saut");
-				else if (element && element.action) {
-					element.action.dom.removeAttr("playSound");
-					if (element.action.reset) element.action.reset(player);
-				}
+				if (col.element) colision[col.sens] = col.element;
 			});
 			
+			/**
+             * DEBUG
+             */
+			var x2, y2, w2, h2;
+            if (colision.bas) {
+                x2 = colision.bas.action.dom.position().left; w2 = colision.bas.action.dom.width();
+                y2 = colision.bas.action.dom.position().top; h2 = colision.bas.action.dom.height();
+                $(".hitbox.bas").show();
+                $(".hitbox.bas").css({
+                    left : x2,
+                    top : y2,
+                    width : w2,
+                    height : h2
+                });
+            }else $(".hitbox.bas").hide();
+            
+            if (colision.haut) {
+                x2 = colision.haut.action.dom.position().left; w2 = colision.haut.action.dom.width();
+                y2 = colision.haut.action.dom.position().top; h2 = colision.haut.action.dom.height();
+                $(".hitbox.haut").show();
+                $(".hitbox.haut").css({
+                    left : x2,
+                    top : y2,
+                    width : w2,
+                    height : h2
+                });
+            }else $(".hitbox.haut").hide();
+            
+            if (colision.gauche) {
+                x2 = colision.gauche.action.dom.position().left; w2 = colision.gauche.action.dom.width();
+                y2 = colision.gauche.action.dom.position().top; h2 = colision.gauche.action.dom.height();
+                $(".hitbox.gauche").show();
+                $(".hitbox.gauche").css({
+                    left : x2,
+                    top : y2,
+                    width : w2,
+                    height : h2
+                });
+            }else $(".hitbox.gauche").hide();
+            
+            if (colision.droite) {
+                x2 = colision.droite.action.dom.position().left; w2 = colision.droite.action.dom.width();
+                y2 = colision.droite.action.dom.position().top; h2 = colision.droite.action.dom.height();
+                $(".hitbox.droite").show();
+                $(".hitbox.droite").css({
+                    left : x2,
+                    top : y2,
+                    width : w2,
+                    height : h2
+                });
+            }else $(".hitbox.droite").hide();
+            /**
+             *  -- END DEBUG
+             */
+			
+            /**
+             * Si pas de colision on bouge
+             */
 			if (!colision.gauche && !colision.droite) position.x = position.x + acceleration.x;
 			if (!colision.haut && !colision.bas) position.y = position.y + acceleration.y;
+			
+			/**
+			 * Si colision haute on rectifie le tir
+			 */
+			if (colision.haut) {
+			    position.y = colision.haut.action.dom.position().top - (h1 - 10);
+			    player.moveEngine.vitesse.y = 1;
+			}
 			
 			if (position.x < 0) position.x = 0;
 			if (position.y < 0) position.y = 1;

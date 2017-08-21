@@ -79,16 +79,18 @@ define(
 						tick = true;
 					}
 					
+					/**
+					 * On calcul le deplacement
+					 */
 					this.moveEngine.move(this.acceleration, this.flag.move);
 
 					/**
 					 * On recupere les colision
 					 */
-					var colision = ColisionUtils.check(this.acceleration, this.position, this.stage.map, this);
+					var colision = ColisionUtils.check(this.acceleration, this.position, this);
 					
 					/**
 					 * Si il n'y a rien en dessous, on tombe
-					 * Si il existe une plateforme, on le fait tomber tres legerement pour tester les colisions en dessous continuellement
 					 */
 					if (!colision.haut) {
 						this.moveEngine.flag.tombe = true;
@@ -98,29 +100,21 @@ define(
 						$("#player").removeClass("saute");
 					}
 					
-					/**
-					 * Si il existe une action avec les plateformes
-					 */
-					if (colision.gauche && colision.gauche.action && colision.gauche.action.useX) colision.gauche.action.useX(this);
-					if (colision.droite && colision.droite.action && colision.gauche.action.useX) colision.gauche.action.useX(this);
-					if (colision.haut && colision.haut.action){
-						var colisionAction = colision.haut.action;
-						
-						var playSound = colisionAction.dom.attr("playSound");
-						if (!playSound) {
-							colisionAction.dom.attr("playSound", true);
-							this.playSound(colision.haut.sound);
-						}
-						if (colisionAction.useY) colisionAction.useY(this);
-					}
+					if (colision.gauche && colision.gauche.action.useX) colision.gauche.action.useX(this);
+					if (colision.droite && colision.droite.action.useX) colision.droite.action.useX(this);
+					if (colision.haut && colision.haut.action.useY) colision.haut.action.useY(this);
+					if (colision.bas && colision.bas.action.useY) colision.bas.action.useY(this);
 					
 					/**
-					 * Le personnage est posé sur une plateforme et n'a rien devant lui
+					 * Le personnage est pose sur une plateforme et n'a rien devant lui
 					 * Il peut donc marcher
 					 */
 					this.moveEngine.oriente(this.flag.move);
 					if (tick && !colision.gauche && !colision.droite && colision.haut) this.moveEngine.marche(this.flag.move);
 
+					/**
+					 * On bouge le personnage
+					 */
 					$("#player").css({
 						left : this.position.x + "px",
 						top : this.position.y + "px"

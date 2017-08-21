@@ -58,7 +58,6 @@ define(["jquery"], function($){
 				dom.css({
 					top : "+="+(move*speed)+"px"
 				});
-				player.position.y = dom.position().top - 50;
 				if (dom.position().top < start - distance) dom.attr("move", 1);
 				else if (dom.position().top > start + distance) dom.attr("move", -1);
 			},

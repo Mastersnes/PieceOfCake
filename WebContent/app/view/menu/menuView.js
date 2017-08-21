@@ -15,10 +15,10 @@ function($, _, Utils, Textes, Mediatheque, page, GameView, LoadView, OptionView,
 
 	return function() {
 		this.init = function() {
-			this.el = $("#app");
-			this.mediatheque = new Mediatheque();
-			this.mediatheque.play("/music/menu.mp3");
-			this.render();
+		    this.el = $("#app");
+            this.mediatheque = new Mediatheque();
+            this.mediatheque.play("/music/menu.mp3");
+            this.render();
 		};
 
 		this.render = function() {
