@@ -152,58 +152,67 @@ define(
 				};
 
 				this.makeEvents = function() {
-					this.alreadyLoad = true;
-					
-					var that = this;
-					$(document).keydown(function(e) {
-						var code = e.keyCode || e.which;
-						console.log(code);
-						switch (code) {
-							case 39: // DROITE
-								if (!that.flag.glisse)that.flag.move = 1;
-								break;
-							case 37: // GAUCHE
-								if (!that.flag.glisse)that.flag.move = -1;
-								break;
-							case 32: // SAUTE
-							case 38:
-								if (!that.moveEngine.flag.tombe)
-									that.moveEngine.saute();
-								break;
-							case 16: // COURS
-								that.moveEngine.flag.cours = true;
-								break;
-							case 20: // COURS
-								if (!that.moveEngine.flag.lockCours) {
-									that.moveEngine.flag.cours = true;
-									that.moveEngine.flag.lockCours = true;
-								}else {
-									that.moveEngine.flag.cours = false;
-									that.moveEngine.flag.lockCours = false;
-								}
-								break;
-							case 27: // PAUSE
-								that.stage.togglePause(that.save, that.flag.point, that.flag.deathNb);
-								break;
-						};
-						
-					});
-					$(document).keyup(function(e) {
-						var code = e.keyCode || e.which;
-						switch (code) {
-						case 39: // DROITE
-						case 37: // GAUCHE
-							if (!that.flag.glisse)that.flag.move = 0;
-							break;
-						case 16: // MARCHE
-							if (!that.moveEngine.flag.lockCours) {
-								that.moveEngine.flag.cours = false;
-							}
-							break;
-						}
-						;
-					});
-				};
+                    this.alreadyLoad = true;
+                    
+                    var that = this;
+                    $(document).keydown(function(e) {
+                        e.preventDefault();
+                        var code = e.keyCode || e.which;
+                        console.log(code);
+                        switch (code) {
+                            case 39: // DROITE
+                            case 68: // DROITE
+                                if (!that.flag.glisse)that.flag.move = 1;
+                                break;
+                            case 37: // GAUCHE
+                            case 81: // GAUCHE
+                            case 65: // GAUCHE
+                                if (!that.flag.glisse)that.flag.move = -1;
+                                break;
+                            case 32: // SAUTE
+                            case 90: // SAUTE
+                            case 87: // SAUTE
+                            case 38:
+                                if (!that.moveEngine.flag.tombe)
+                                    that.moveEngine.saute();
+                                break;
+                            case 16: // COURS
+                                that.moveEngine.flag.cours = true;
+                                break;
+                            case 20: // COURS
+                                if (!that.moveEngine.flag.lockCours) {
+                                    that.moveEngine.flag.cours = true;
+                                    that.moveEngine.flag.lockCours = true;
+                                }else {
+                                    that.moveEngine.flag.cours = false;
+                                    that.moveEngine.flag.lockCours = false;
+                                }
+                                break;
+                            case 27: // PAUSE
+                                that.stage.togglePause(that.save, that.flag.point, that.flag.deathNb);
+                                break;
+                        };
+                        
+                    });
+                    $(document).keyup(function(e) {
+                        var code = e.keyCode || e.which;
+                        switch (code) {
+                        case 39: // DROITE
+                        case 68: // DROITE
+                        case 37: // GAUCHE
+                        case 81: // GAUCHE
+                        case 65: // GAUCHE
+                            if (!that.flag.glisse)that.flag.move = 0;
+                            break;
+                        case 16: // MARCHE
+                            if (!that.moveEngine.flag.lockCours) {
+                                that.moveEngine.flag.cours = false;
+                            }
+                            break;
+                        }
+                        ;
+                    });
+                };
 
 				this.init(stage);
 			};
