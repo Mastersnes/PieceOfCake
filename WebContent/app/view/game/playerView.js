@@ -98,6 +98,7 @@ define(
 					}else {
 						this.moveEngine.flag.tombe = false;
 						$("#player").removeClass("saute");
+						colision.haut.action.dom.addClass("saut");
 					}
 					
 					if (colision.gauche && colision.gauche.action.useX) colision.gauche.action.useX(this);

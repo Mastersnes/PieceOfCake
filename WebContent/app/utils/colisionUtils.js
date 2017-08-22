@@ -1,5 +1,5 @@
 'use strict';
-define(["jquery", "app/data/elements"], function($, ElementsData){
+define(["jquery", "app/data/elements", "app/utils/elementUtils"], function($, ElementsData, ElementUtils){
 	return {
 		/**
 		* Permet d'appeler un WS
@@ -40,34 +40,25 @@ define(["jquery", "app/data/elements"], function($, ElementsData){
 				if (element.action) {
 					element.action.dom = $(this);
 					element.action.parent = element;
-				}else {
-				    element.action = {
-				            dom : $(this)
-				    };
-				}
+				}else element.action = {dom : $(this)};
 				
-				var x2 = $(this).position().left; var y2 = $(this).position().top;
-				var w2 = $(this).width(); var h2 = $(this).height();
-				if (element.hitbox) {
-                    x2 = x2 + element.hitbox.x; y2 = y2 + element.hitbox.y;
-                    w2 = element.hitbox.w; h2 = element.hitbox.h;
-                }
+				var hitbox = ElementUtils.getHitbox(element);
 				
-				if (x1 + w1 > x2 && x1 < x2 + w2) {
-					if (y1 + h1 > y2 && y1 < y2 + h2) { // COLLISION !
-					    if (y1 + h1 <= y2 + (h2/2)) col = {
+				if (x1 + w1 > hitbox.x && x1 < hitbox.x + hitbox.w) {
+					if (y1 + h1 > hitbox.y && y1 < hitbox.y + hitbox.h) { // COLLISION !
+					    if (y1 + h1 <= hitbox.y + (hitbox.h/2)) col = {
                                 element : element,
                                 sens : "haut"
                         };
-                        if (col.element == null && y1 > y2 + (h2/2)) col = {
+                        if (col.element == null && y1 > hitbox.y + (hitbox.h/2)) col = {
                                 element : element,
                                 sens : "bas"
                         };
-						if (col.element == null && x1 + w1 <= x2 + (w2/2)) col = {
+						if (col.element == null && x1 + w1 <= hitbox.x + (hitbox.w/2)) col = {
 						        element : element,
 						        sens : "gauche"
 						};
-						if (col.element == null && x1 > x2 + (w2/2)) col = {
+						if (col.element == null && x1 > hitbox.x + (hitbox.w/2)) col = {
                                 element : element,
                                 sens : "droite"
                         };
@@ -78,10 +69,10 @@ define(["jquery", "app/data/elements"], function($, ElementsData){
 				    colision[col.sens] = col.element;
 				    $(".hitbox."+col.sens).show();
 				    $(".hitbox."+col.sens).css({
-	                    left : x2,
-	                    top : y2,
-	                    width : w2,
-	                    height : h2
+	                    left : hitbox.x,
+	                    top : hitbox.y,
+	                    width : hitbox.w,
+	                    height : hitbox.h
 	                });
 				}
 				else if (element.action.reset) element.action.reset(player);
@@ -108,10 +99,12 @@ define(["jquery", "app/data/elements"], function($, ElementsData){
 			 * Si colision haute ou basse on rectifie le tir
 			 */
 			if (colision.haut && !colision.haut.float) {
-			    position.y = colision.haut.action.dom.position().top - (h1 - 10);
+			    var hitbox = ElementUtils.getHitbox(colision.haut);
+			    position.y = hitbox.y - (h1 - 10);
 			    player.moveEngine.vitesse.y = 1;
 			}else if (colision.bas && !colision.bas.float) {
-			    position.y = colision.bas.action.dom.position().top + colision.bas.action.dom.height();
+			    var hitbox = ElementUtils.getHitbox(colision.bas);
+			    position.y = hitbox.y + hitbox.h + 10;
                 player.moveEngine.vitesse.y = 1;
 			}
 			
