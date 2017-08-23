@@ -96,6 +96,7 @@
 	background-image: url("../img/menu/menu-fond.jpg");
 }
 .hitbox {
+	display: none !important;
 	position: absolute;
 	z-index: 10000;
 	opacity : 0.5;

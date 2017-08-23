@@ -16,7 +16,7 @@ define(["jquery", "app/data/actions"], function($, Actions){
 		"choux" : {
 		    hitbox : {
 		        x : 20,
-		        y : 0,
+		        y : 10,
 		        w : 80,
 		        h : 50
 		    },
@@ -40,7 +40,7 @@ define(["jquery", "app/data/actions"], function($, Actions){
 		"gateau-fraise" : {
 			hitbox : {
 				x : 0,
-				y : 10,
+				y : 20,
 				w : 170,
 				h : 100
 			},

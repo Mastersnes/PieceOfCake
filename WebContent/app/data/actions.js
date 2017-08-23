@@ -38,31 +38,35 @@ define(["jquery"], function($){
 		"bouge-verticale" : { // BOUGE VERTICALEMENT
 			useY : function(player, onReset) {
 			    var dom = this.dom;
-                
-                var move = -1;
-                if (dom.attr("move")) move = parseInt(dom.attr("move"));
-                else {
-                    dom.attr("move", move);
-                    dom.attr("start", dom.position().top);
-                }
-                var start = parseFloat(dom.attr("start"));
-                
-                var speed = 2000;
-                if (dom.attr("vitesse")) speed = parseInt(dom.attr("vitesse"));
-                var distance = 50;
-                if (dom.attr("distance")) distance = parseInt(dom.attr("distance"));
-                
-                if (!dom.attr("inMove")) {
-                    dom.attr("inMove", true);
-                    dom.animate({
-                        top : (start + (distance*move))+"px"
-                    }, speed, function() {
-                        dom.removeAttr("inMove");
-                        dom.attr("move", -1 * move)
-                    });
-                }else if (!onReset) {
-                    player.position.y = dom.position().top - 60;
-                }
+				if (dom.position().top == 0) return;
+				
+				var move = -1;
+				if (dom.attr("move")) move = dom.attr("move");
+				else {
+					dom.attr("move", move);
+					dom.attr("start", dom.position().top);
+				}
+				
+				var start = parseFloat(dom.attr("start"));
+				
+				move = parseInt(move);
+				var speed = 1;
+				if (dom.attr("vitesse")) speed = parseInt(dom.attr("vitesse"));
+				var distance = 50;
+				if (dom.attr("distance")) distance = parseInt(dom.attr("distance"));
+				
+				dom.css({
+					top : "+="+(move*speed)+"px"
+				});
+				if (!onReset) {
+				    var top = dom.position().top;
+				    if (this.parent.hitbox) {
+				        top += this.parent.hitbox.y;
+				    }
+				    player.position.y = top - 60;
+				}
+				if (dom.position().top < start - distance) dom.attr("move", 1);
+				else if (dom.position().top > start + distance) dom.attr("move", -1);
 			},
 			reset : function(player) {this.useY(player, true);}
 		},
@@ -176,38 +180,27 @@ define(["jquery"], function($){
 			},
 			reset : function(player) {
 			    var dom = this.dom;
-			    
-			    var speed1 = 2000;
+			    var speed1 = 1;
 				if (dom.attr("vitesse")) speed1 = dom.attr("vitesse");
-				var speed2 = 2000;
+				var speed2 = 1;
 				if (dom.attr("descente")) speed2 = dom.attr("descente");
 				var distance = 100;
 				if (dom.attr("distance")) distance = dom.attr("distance");
 				
-				var move = -1;
+				var move = -1 * speed1;
 				if (dom.attr("move")) move = dom.attr("move");
 				else {
 					dom.attr("move", move);
 					dom.attr("start", dom.position().top);
 				}
+				
 				var start = parseFloat(dom.attr("start"));
 				
-				if (!dom.attr("inMove")) {
-                    dom.attr("inMove", true);
-                    
-                    var speed = speed1;
-                    if (move > 0) {
-                        speed = speed2;
-                        distance = 0;
-                    } 
-                    
-                    dom.animate({
-                        top : (start + (distance*move))+"px"
-                    }, speed, function() {
-                        dom.removeAttr("inMove");
-                        dom.attr("move", -1 * move)
-                    });
-                }
+				dom.css({
+					top : "+="+move+"px"
+				});
+				if (dom.position().top < start - distance) dom.attr("move", 1 * speed2);
+				else if (dom.position().top > start) dom.attr("move", -1 * speed1);
 			}
 		},
 		"bouton" : { // BOUTON
