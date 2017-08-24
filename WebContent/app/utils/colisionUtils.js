@@ -75,7 +75,10 @@ define(["jquery", "app/data/elements", "app/utils/elementUtils"], function($, El
 	                    height : hitbox.h
 	                });
 				}
-				else if (element.action.reset) element.action.reset(player);
+				else{
+					$(this).removeAttr("playSound");
+					if (element.action.reset) element.action.reset(player);
+				}
 			});
 			
 			/**
