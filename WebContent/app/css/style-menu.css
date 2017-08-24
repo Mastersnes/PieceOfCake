@@ -107,14 +107,15 @@ ul.popup-menu > li:hover {
 }
 
 .flag-container {
-	height: 40%;
+    height: 40%;
+    width: 100%;
 }
 .flag {
-	cursor: pointer;
-	display: inline-block;
-	width: 225px; height: 150px;
-	background-repeat: no-repeat;
-	background-size: 100% 100%; 
+    cursor: pointer;
+    display: inline-block;
+    width: 45%; height: 100%;
+    background-repeat: no-repeat;
+    background-size: 100% 100%; 
 }
 .flag.fr {
 	background-image: url("../img/menu/flag/fr.jpg");
