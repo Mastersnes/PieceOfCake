@@ -96,10 +96,25 @@
 	background-image: url("../img/menu/menu-fond.jpg");
 }
 .hitbox {
+	display: none !important;
 	position: absolute;
 	z-index: 10000;
-	background-color: red;
 	opacity : 0.5;
+}
+.hitbox.perso {
+	background-color: red;
+}
+.hitbox.haut {
+	background-color: green;
+}
+.hitbox.bas {
+	background-color: blue;
+}
+.hitbox.gauche {
+	background-color: pink;
+}
+.hitbox.droite {
+	background-color: yellow;
 }
 .shake {
     animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;

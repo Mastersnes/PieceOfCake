@@ -79,47 +79,43 @@ define(
 						tick = true;
 					}
 					
+					/**
+					 * On calcul le deplacement
+					 */
 					this.moveEngine.move(this.acceleration, this.flag.move);
 
 					/**
 					 * On recupere les colision
 					 */
-					var colision = ColisionUtils.check(this.acceleration, this.position, this.stage.map, this);
+					var colision = ColisionUtils.check(this.acceleration, this.position, this);
 					
 					/**
 					 * Si il n'y a rien en dessous, on tombe
-					 * Si il existe une plateforme, on le fait tomber tres legerement pour tester les colisions en dessous continuellement
 					 */
-					if (!colision.y || colision.y.haute) {
+					if (!colision.haut) {
 						this.moveEngine.flag.tombe = true;
 						$("#player").addClass("saute");
 					}else {
 						this.moveEngine.flag.tombe = false;
 						$("#player").removeClass("saute");
+						colision.haut.action.dom.addClass("saut");
 					}
 					
-					/**
-					 * Si il existe une action avec les plateformes
-					 */
-					if (colision.x && colision.x.action && colision.x.action.useX) colision.x.action.useX(this);
-					if (colision.y && colision.y.action){
-						var colisionAction = colision.y.action;
-						
-						var playSound = colisionAction.dom.attr("playSound");
-						if (!playSound) {
-							colisionAction.dom.attr("playSound", true);
-							this.playSound(colision.y.sound);
-						}
-						if (colisionAction.useY) colisionAction.useY(this);
-					}
+					if (colision.gauche && colision.gauche.action.useX) colision.gauche.action.useX(this);
+					if (colision.droite && colision.droite.action.useX) colision.droite.action.useX(this);
+					if (colision.haut && colision.haut.action.useY) colision.haut.action.useY(this);
+					if (colision.bas && colision.bas.action.useY) colision.bas.action.useY(this);
 					
 					/**
-					 * Le personnage est posé sur une plateforme et n'a rien devant lui
+					 * Le personnage est pose sur une plateforme et n'a rien devant lui
 					 * Il peut donc marcher
 					 */
 					this.moveEngine.oriente(this.flag.move);
-					if (tick && !colision.x && colision.y) this.moveEngine.marche(this.flag.move);
+					if (tick && !colision.gauche && !colision.droite && colision.haut) this.moveEngine.marche(this.flag.move);
 
+					/**
+					 * On bouge le personnage
+					 */
 					$("#player").css({
 						left : this.position.x + "px",
 						top : this.position.y + "px"
@@ -152,67 +148,67 @@ define(
 				};
 
 				this.makeEvents = function() {
-                    this.alreadyLoad = true;
-                    
-                    var that = this;
-                    $(document).keydown(function(e) {
-                        e.preventDefault();
-                        var code = e.keyCode || e.which;
-                        console.log(code);
-                        switch (code) {
-                            case 39: // DROITE
-                            case 68: // DROITE
-                                if (!that.flag.glisse)that.flag.move = 1;
-                                break;
-                            case 37: // GAUCHE
-                            case 81: // GAUCHE
-                            case 65: // GAUCHE
-                                if (!that.flag.glisse)that.flag.move = -1;
-                                break;
-                            case 32: // SAUTE
-                            case 90: // SAUTE
-                            case 87: // SAUTE
-                            case 38:
-                                if (!that.moveEngine.flag.tombe)
-                                    that.moveEngine.saute();
-                                break;
-                            case 16: // COURS
-                                that.moveEngine.flag.cours = true;
-                                break;
-                            case 20: // COURS
-                                if (!that.moveEngine.flag.lockCours) {
-                                    that.moveEngine.flag.cours = true;
-                                    that.moveEngine.flag.lockCours = true;
-                                }else {
-                                    that.moveEngine.flag.cours = false;
-                                    that.moveEngine.flag.lockCours = false;
-                                }
-                                break;
-                            case 27: // PAUSE
-                                that.stage.togglePause(that.save, that.flag.point, that.flag.deathNb);
-                                break;
-                        };
-                        
-                    });
-                    $(document).keyup(function(e) {
-                        var code = e.keyCode || e.which;
-                        switch (code) {
-                        case 39: // DROITE
-                        case 68: // DROITE
-                        case 37: // GAUCHE
-                        case 81: // GAUCHE
-                        case 65: // GAUCHE
-                            if (!that.flag.glisse)that.flag.move = 0;
-                            break;
-                        case 16: // MARCHE
-                            if (!that.moveEngine.flag.lockCours) {
-                                that.moveEngine.flag.cours = false;
-                            }
-                            break;
-                        }
-                        ;
-                    });
-                };
+					this.alreadyLoad = true;
+					
+					var that = this;
+					$(document).keydown(function(e) {
+						e.preventDefault();
+						var code = e.keyCode || e.which;
+						console.log(code);
+						switch (code) {
+							case 39: // DROITE
+							case 68: // DROITE
+								if (!that.flag.glisse)that.flag.move = 1;
+								break;
+							case 37: // GAUCHE
+							case 81: // GAUCHE
+							case 65: // GAUCHE
+								if (!that.flag.glisse)that.flag.move = -1;
+								break;
+							case 32: // SAUTE
+							case 90: // SAUTE
+							case 87: // SAUTE
+							case 38:
+								if (!that.moveEngine.flag.tombe)
+									that.moveEngine.saute();
+								break;
+							case 16: // COURS
+								that.moveEngine.flag.cours = true;
+								break;
+							case 20: // COURS
+								if (!that.moveEngine.flag.lockCours) {
+									that.moveEngine.flag.cours = true;
+									that.moveEngine.flag.lockCours = true;
+								}else {
+									that.moveEngine.flag.cours = false;
+									that.moveEngine.flag.lockCours = false;
+								}
+								break;
+							case 27: // PAUSE
+								that.stage.togglePause(that.save, that.flag.point, that.flag.deathNb);
+								break;
+						};
+						
+					});
+					$(document).keyup(function(e) {
+						var code = e.keyCode || e.which;
+						switch (code) {
+						case 39: // DROITE
+						case 68: // DROITE
+						case 37: // GAUCHE
+						case 81: // GAUCHE
+						case 65: // GAUCHE
+							if (!that.flag.glisse)that.flag.move = 0;
+							break;
+						case 16: // MARCHE
+							if (!that.moveEngine.flag.lockCours) {
+								that.moveEngine.flag.cours = false;
+							}
+							break;
+						}
+						;
+					});
+				};
 
 				this.init(stage);
 			};

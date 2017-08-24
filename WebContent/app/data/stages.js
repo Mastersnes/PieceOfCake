@@ -10,7 +10,7 @@ define(["jquery"], function($){
 			"cinematique" : ["cinematique-didactitiel", "boulangerie1", "boulangerie2", "boulangerie3", "boulangerie4"],
 			"start" : {
 				x : 100,
-				y : 450
+				y : 400
 			},
 			"back" : [
 			  {id: "etagere-vide", x: 50, y: 200},
@@ -108,7 +108,7 @@ define(["jquery"], function($){
 			  {id: "coeur", x: 5410, y: 550},
 			  {id: "fraise", x: 5450, y: 550, vitesse : 5, descente : 3},
 			  //SUITE
-			  {id: "coeur", x: 5500, y: 250},
+			  {id: "coeur", x: 5400, y: 250},
 			  {id: "muffin", x: 5450, y: 450},
 			  {id: "eclair-vanille", x: 5800, y: 460},
 			  {id: "coeur", x: 6020, y: 420},
@@ -116,7 +116,7 @@ define(["jquery"], function($){
 			  {id: "gateau-fraise", x: 6100, y: 440},
 			  {id: "fraise", x: 6170, y: 425, vitesse: 3, descente: 5},
 			  {id: "coeur", x: 6305, y: 400},
-			  {id: "citron", x: 6310, y: 425, vitesse: 3, descente: 4},
+			  {id: "citron", x: 6310, y: 415, vitesse: 2, descente: 3, distance : 150},
 			  {id: "banane", x: 6350, y: 420}
 			]
 		},

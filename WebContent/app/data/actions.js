@@ -36,8 +36,8 @@ define(["jquery"], function($){
 			}
 		},
 		"bouge-verticale" : { // BOUGE VERTICALEMENT
-			useY : function(player) {
-				var dom = this.dom;
+			useY : function(player, onReset) {
+			    var dom = this.dom;
 				if (dom.position().top == 0) return;
 				
 				var move = -1;
@@ -58,42 +58,22 @@ define(["jquery"], function($){
 				dom.css({
 					top : "+="+(move*speed)+"px"
 				});
-				player.position.y = dom.position().top - 50;
+				if (!onReset) {
+				    var top = dom.position().top;
+				    if (this.parent.hitbox) {
+				        top += this.parent.hitbox.y;
+				    }
+				    player.position.y = top - 60;
+				}
 				if (dom.position().top < start - distance) dom.attr("move", 1);
 				else if (dom.position().top > start + distance) dom.attr("move", -1);
 			},
-			reset : function(player) {
-				var dom = this.dom;
-				if (dom.position().top == 0) return;
-				if (dom.offset().left - dom.width() < -100) return;
-				if (dom.offset().left > $(".game").width() + 100) return;
-				
-				var move = -1;
-				if (dom.attr("move")) move = dom.attr("move");
-				else {
-					dom.attr("move", move);
-					dom.attr("start", dom.position().top);
-				}
-				
-				var start = parseFloat(dom.attr("start"));
-				
-				move = parseInt(move);
-				var speed = 1;
-				if (dom.attr("vitesse")) speed = parseInt(dom.attr("vitesse"));
-				var distance = 50;
-				if (dom.attr("distance")) distance = parseInt(dom.attr("distance"));
-				
-				dom.css({
-					top : "+="+(move*speed)+"px"
-				});
-				if (dom.position().top < start - distance) dom.attr("move", 1);
-				else if (dom.position().top > start + distance) dom.attr("move", -1);
-			}
+			reset : function(player) {this.useY(player, true);}
 		},
 		"explose" : {
 			useY : function(player) {
 				var dom = this.dom;
-				var index = dom.attr("index");
+
 				var delay = 0;
 				if (dom.attr("delay")) delay = parseInt(dom.attr("delay"));
 				
@@ -137,7 +117,6 @@ define(["jquery"], function($){
 					player.stopSound("/psss.mp3");
 				}
 				
-				var index = dom.attr("index");
 				dom.attr("delay", 0);
 				dom.removeClass(function (index, className) {
 				    return (className.match (/\bsaut-\S+/g) || []).join(' ');
@@ -148,7 +127,7 @@ define(["jquery"], function($){
 		"tombe" : {
 			useY : function(player) {
 				var dom = this.dom;
-				var index = dom.attr("index");
+				
 				var delay = 0;
 				if (dom.attr("delay")) delay = parseInt(dom.attr("delay"));
 				
@@ -171,7 +150,7 @@ define(["jquery"], function($){
 			},
 			reset : function(player) {
 				var dom = this.dom;
-				var index = dom.attr("index");
+				
 				dom.attr("delay", 0);
 				dom.removeClass("shake");
 				var lastTop = dom.attr("lastTop");
@@ -200,12 +179,8 @@ define(["jquery"], function($){
 				this.useY(player);
 			},
 			reset : function(player) {
-				var dom = this.dom;
-				if (dom.position().top == 0) return;
-				if (dom.offset().left - dom.width() < -100) return;
-				if (dom.offset().left > $(".game").width() + 100) return;
-				
-				var speed1 = 1;
+			    var dom = this.dom;
+			    var speed1 = 1;
 				if (dom.attr("vitesse")) speed1 = dom.attr("vitesse");
 				var speed2 = 1;
 				if (dom.attr("descente")) speed2 = dom.attr("descente");
@@ -254,7 +229,6 @@ define(["jquery"], function($){
 			reset : function(player) {
 				var dom = this.dom;
 				if (!dom.attr("active")) return;
-				var index = dom.attr("index");
 				
 				if (!dom.attr("soundPlay")) {
 					dom.attr("soundPlay", true);

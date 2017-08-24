@@ -14,6 +14,12 @@ define(["jquery", "app/data/actions"], function($, Actions){
 			action : Actions.get("tombe")
 		},
 		"choux" : {
+		    hitbox : {
+		        x : 20,
+		        y : 10,
+		        w : 80,
+		        h : 50
+		    },
 			sound : "/pouic.mp3",
 			action : Actions.get("bouge-verticale")
 		},
@@ -34,15 +40,30 @@ define(["jquery", "app/data/actions"], function($, Actions){
 		"gateau-fraise" : {
 			hitbox : {
 				x : 0,
-				y : 10,
+				y : 20,
 				w : 170,
 				h : 100
 			},
 			sound : "/ahha.mp3",
 			action : {}
 		},
-		"fraise" : {action : Actions.get("bouge-tue")},
-		"citron" : {action : Actions.get("bouge-tue")},
+		"fraise" : {
+		    hitbox : {
+		        x : 5,
+		        y : 10,
+		        w : 25,
+		        h : 35
+		    },
+		    action : Actions.get("bouge-tue")
+		},
+		"citron" : {
+		    hitbox : {
+                x : 5,
+                y : 10,
+                w : 25,
+                h : 35
+            },
+            action : Actions.get("bouge-tue")},
 		"gateau-choco" : {
 			sound : "/pop.mp3",
 			action : Actions.get("bouton")
