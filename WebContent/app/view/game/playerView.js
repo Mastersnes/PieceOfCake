@@ -96,14 +96,6 @@ define(
 						this.moveEngine.flag.tombe = true;
 						$("#player").addClass("saute");
 					}else {
-						var colisionAction = colision.haut.action;
-						
-						var playSound = colisionAction.dom.attr("playSound");
-						if (!playSound) {
-							colisionAction.dom.attr("playSound", true);
-							this.playSound(colision.haut.sound);
-						}
-						
 						this.moveEngine.flag.tombe = false;
 						$("#player").removeClass("saute");
 						colision.haut.action.dom.addClass("saut");

@@ -66,6 +66,12 @@ define(["jquery", "app/data/elements", "app/utils/elementUtils"], function($, El
 				}
 				
 				if (col.element) {
+					var playSound = $(this).attr("playSound");
+					if (!playSound) {
+						$(this).attr("playSound", true);
+						player.playSound(col.element.sound);
+					}
+					
 				    colision[col.sens] = col.element;
 				    $(".hitbox."+col.sens).show();
 				    $(".hitbox."+col.sens).css({
