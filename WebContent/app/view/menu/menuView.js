@@ -9,8 +9,9 @@ define(["jquery",
         "app/view/menu/loadView",
         "app/view/menu/optionView",
         "app/view/menu/creditView",
-        "app/view/menu/partenaireView"], 
-function($, _, Utils, Textes, Mediatheque, page, GameView, LoadView, OptionView, CreditView, PartenaireView) {
+        "app/view/menu/partenaireView",
+        "app/view/menu/difficultyView"], 
+function($, _, Utils, Textes, Mediatheque, page, GameView, LoadView, OptionView, CreditView, PartenaireView, DifficultyView) {
 	'use strict';
 
 	return function() {
@@ -39,7 +40,7 @@ function($, _, Utils, Textes, Mediatheque, page, GameView, LoadView, OptionView,
 		this.makeEvents = function() {
 			var that = this;
 			$("#new").click(function() {
-				that.newGame();
+				new DifficultyView(that, Textes).show();
 			});
 			$("#load").click(function() {
 				new LoadView(that, Textes).show();
@@ -55,11 +56,11 @@ function($, _, Utils, Textes, Mediatheque, page, GameView, LoadView, OptionView,
 			});
 		};
 		
-		this.newGame = function() {
-			new GameView(this, false, null, Textes, this.mediatheque);
+		this.newGame = function(difficulty) {
+			new GameView(this, false, null, Textes, this.mediatheque, difficulty);
 		};
 		this.loadGame = function(code) {
-			new GameView(this, true, code, Textes, this.mediatheque);
+			new GameView(this, true, code, Textes, this.mediatheque, null);
 		};
 		
 		this.init();

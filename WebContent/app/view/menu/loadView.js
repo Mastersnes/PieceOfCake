@@ -47,7 +47,7 @@ function($, _, Utils, Stages, page) {
 					return that.error();
 				}
 				if (!save || !save.lieu || !save.stage) return that.error();
-				var map = Stages.get(save.lieu + save.stage);
+				var map = Stages.get(save.lieu, save.stage);
 				if (map.length == 0) return that.error();
 				
 				that.parent.loadGame(code);

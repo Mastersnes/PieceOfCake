@@ -25,9 +25,11 @@ define(
 					position : null,
 					lieu : null,
 					stage : null,
+					difficulty : null,
 					point : 0,
 					deathNb : 0
 				};
+				this.difficulty = null;
 				this.delay = [];
 				
 				this.alreadyLoad = false;
@@ -47,6 +49,7 @@ define(
 						this.position.y = this.save.position.y;
 						this.flag.point = this.save.point;
 						this.flag.deathNb = this.save.deathNb;
+						this.difficulty = this.save.difficulty;
 					}
 				};
 				
@@ -143,6 +146,7 @@ define(
 					this.save.position = Utils.clone(this.position);
 					this.save.point = this.flag.point;
 					this.save.deathNb = this.flag.deathNb;
+					this.save.difficulty = this.difficulty;
 					console.log("save : ", this.save);
 					window.localStorage.setItem(Utils.name, Utils.encode(JSON.stringify(this.save)));
 				};

@@ -8,20 +8,21 @@ define(["jquery",
 function($, _, Utils, CinematiqueView, Stages, PlayerView) {
 	'use strict';
 
-	return function(parent, Textes) {
-		this.init = function(parent, Textes) {
+	return function(parent, Textes, difficulty) {
+		this.init = function(parent, Textes, difficulty) {
 			this.el = ".game";
 			this.Textes = Textes;
 			this.parent = parent;
 			this.mediatheque = parent.mediatheque;
 			this.pause = false;
 			this.player = new PlayerView(this);
+			this.player.difficulty = difficulty;
 		};
 
 		this.go = function(lieu, stage, save) {
 			$("#cinematique").show();
 			if (!this.cinematique) this.cinematique = new CinematiqueView(this.Textes);
-			this.map = Stages.get(lieu + stage);
+			this.map = Stages.get(lieu, stage);
 			
 			if (this.map.end) {
 				if (this.map.cinematique) {
@@ -37,8 +38,9 @@ function($, _, Utils, CinematiqueView, Stages, PlayerView) {
 				$(".game .background").attr("class", "plan background "+lieu);
 				$(".game .frontground").attr("class", "plan frontground "+lieu);
 				
-				for (var index in this.map.elements) {
-					var element = this.map.elements[index];
+				var listeElements = this.map.elements[this.player.difficulty];
+				for (var index in listeElements) {
+					var element = listeElements[index];
 					$(".game .stage").append(this.createElement(element, index));
 				}
 				for (var index in this.map.back) {
@@ -79,6 +81,8 @@ function($, _, Utils, CinematiqueView, Stages, PlayerView) {
 		};
 
 		this.load = function(save) {
+			if (save.difficulty) this.player.difficulty = save.difficulty;
+			else this.player.difficulty = "moyen";
 			this.go(save.lieu, save.stage, save);
 		};
 		
@@ -170,6 +174,6 @@ function($, _, Utils, CinematiqueView, Stages, PlayerView) {
 			}
 		};
 		
-		this.init(parent, Textes);
+		this.init(parent, Textes, difficulty);
 	};
 });

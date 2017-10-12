@@ -2,14 +2,15 @@
 define(["jquery",
         'underscore',
         "app/utils/utils",
-        "text!app/template/menu/popup/credit.html"], 
+        "text!app/template/menu/popup/difficulty.html"], 
 function($, _, Utils, page) {
 	'use strict';
 
-	return function(Textes) {
-		this.init = function(Textes) {
-			this.el = "#credit-popup";
+	return function(menu, Textes) {
+		this.init = function(menu, Textes) {
+			this.el = "#difficulty-popup";
 			this.Textes = Textes;
+			this.menu = menu;
 			this.render();
 		};
 
@@ -29,11 +30,9 @@ function($, _, Utils, page) {
 			$(this.el).find(".close").click(function() {
 				$(that.el).hide("slow");
 			});
-			$("#deviant").click(function() {
-				window.open("https://lesjeuxdebebel.deviantart.com/", "_blank");
-			});
-			$("#aeferrets").click(function() {
-				window.open("https://www.facebook.com/AEFerrets/", "_blank");
+			$("#facile, #moyen, #difficile, #hardcore").click(function() {
+				var type = $(this).attr("id");
+				that.menu.newGame(type);
 			});
 		};
 		
@@ -41,6 +40,6 @@ function($, _, Utils, page) {
 			$(this.el).show("slow");
 		};
 		
-		this.init(Textes);
+		this.init(menu, Textes);
 	};
 });

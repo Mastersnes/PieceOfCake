@@ -98,7 +98,7 @@ ul.popup-menu > li:hover {
 .popup .close {
 	width: 30px; height: 30px;
 	position: absolute;
-	top: -18vh;
+	top: -10vh;
 	right: -7vw;
 	background-image: url("../img/menu/croix.png");
 	background-repeat: no-repeat;

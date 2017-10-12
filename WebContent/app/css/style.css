@@ -73,9 +73,13 @@ ul li {
 	border-radius: 20px;
 }
 .popup > .content > .texte {
+	position: absolute;
+	top : 10vh;
 	font-size: 1.7em;
 	font-family: fantasy;
 	text-align: center;
-	margin-top: 60vh;
 	width: 65vw;
+}
+.popup > .content > .text-content {
+	height: 60vh;
 }

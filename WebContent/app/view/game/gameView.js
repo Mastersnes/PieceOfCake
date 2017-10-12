@@ -8,12 +8,12 @@ define(["jquery",
 function($, _, Utils, page, StageView, EndView) {
 	'use strict';
 
-	return function(parent, load, code, Textes, Mediatheque) {
-		this.init = function(parent, load, code, Textes, Mediatheque) {
+	return function(parent, load, code, Textes, Mediatheque, difficulty) {
+		this.init = function(parent, load, code, Textes, Mediatheque, difficulty) {
 			this.el = $("#app");
 			this.Textes = Textes;
 			this.mediatheque = Mediatheque;
-			this.stageView = new StageView(this, Textes);
+			this.stageView = new StageView(this, Textes, difficulty);
 			this.render(load, code);
 			this.endView = new EndView(Textes);
 		};
@@ -46,6 +46,6 @@ function($, _, Utils, page, StageView, EndView) {
 			$(".game").fadeOut();
 		};
 		
-		this.init(parent, load, code, Textes, Mediatheque);
+		this.init(parent, load, code, Textes, Mediatheque, difficulty);
 	};
 });

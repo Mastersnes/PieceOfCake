@@ -8,6 +8,22 @@ define(["jquery", "app/data/actions"], function($, Actions){
 			fr : "Nouvelle partie",
 			en : "New Game"
 		},
+		"facile" : {
+			fr : "Facile",
+			en : "Easy"
+		},
+		"moyen" : {
+			fr : "Normal",
+			en : "Normal"
+		},
+		"difficile" : {
+			fr : "Difficile",
+			en : "Hard"
+		},
+		"hardcore" : {
+			fr : "Suicidaire",
+			en : "HardCore"
+		},
 		"loadGame" : {
 			fr : "Charger une partie",
 			en : "Load a game"
