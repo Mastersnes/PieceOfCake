@@ -25,16 +25,16 @@ function($, _, Utils, page) {
 		};
 		
 		this.makeEvents = function() {
-			var that = this;
-			$(this.el).find(".close").click(function() {
-				$(that.el).hide("slow");
-			});
-			$("#deviant").click(function() {
-				window.open("https://lesjeuxdebebel.deviantart.com/", "_blank");
-			});
-			$("#aeferrets").click(function() {
-				window.open("https://www.facebook.com/AEFerrets/", "_blank");
-			});
+		    var that = this;
+            $(this.el).find(".close").click(function() {
+                $(that.el).hide("slow");
+            });
+            $("#deviant").click(function() {
+                window.open("https://lesjeuxdebebel.deviantart.com/", "_blank");
+            });
+            $("#aeferrets").click(function() {
+                window.open("https://www.facebook.com/AEFerrets/", "_blank");
+            });
 		};
 		
 		this.show = function() {

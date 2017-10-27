@@ -35,7 +35,7 @@ function($, _, Utils, page, StageView, EndView) {
 			}
 			
 			if (save) this.stageView.load(save);
-			else this.stageView.go("fin", 0);
+			else this.stageView.go("boulangerie", 1);
 		};
 		
 		this.gameOver = function(point) {
