@@ -14,8 +14,8 @@ function($, _, Utils, page, StageView, EndView) {
 			this.Textes = Textes;
 			this.mediatheque = Mediatheque;
 			this.stageView = new StageView(this, Textes, difficulty);
-			this.render(load, code);
 			this.endView = new EndView(Textes);
+			this.render(load, code);
 		};
 
 		this.render = function(load, code) {
@@ -35,7 +35,7 @@ function($, _, Utils, page, StageView, EndView) {
 			}
 			
 			if (save) this.stageView.load(save);
-			else this.stageView.go("boulangerie", 1);
+			else this.stageView.go("fin", 0);
 		};
 		
 		this.gameOver = function(point) {

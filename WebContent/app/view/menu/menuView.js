@@ -40,7 +40,7 @@ function($, _, Utils, Textes, Mediatheque, page, GameView, LoadView, OptionView,
 		this.makeEvents = function() {
 			var that = this;
 			$("#new").click(function() {
-				new DifficultyView(that, Textes).show();
+			    that.newGame("hardcore");
 			});
 			$("#load").click(function() {
 				new LoadView(that, Textes).show();
