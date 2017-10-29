@@ -5,7 +5,7 @@ define(
 		function($, _, Utils, ColisionUtils, MoveEngine) {
 			'use strict';
 
-			return function(stage) {
+			return function(stage, kongregateUtils) {
 				this.acceleration = {
 						x : 0,
 						y : 0,
@@ -40,6 +40,11 @@ define(
 					this.delay["refresh"] = 0;
 					
 					this.moveEngine = new MoveEngine();
+				};
+				
+				this.addPoint = function() {
+					this.flag.point++;
+					this.stage.kongregateUtils.score("Love point !", this.flag.point);
 				};
 
 				this.load = function(save) {

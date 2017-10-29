@@ -13,6 +13,7 @@ function($, _, Utils, page, StageView, EndView) {
 			this.el = $("#app");
 			this.Textes = Textes;
 			this.mediatheque = Mediatheque;
+			this.kongregateUtils = parent.kongregateUtils;
 			this.stageView = new StageView(this, Textes, difficulty);
 			this.endView = new EndView(Textes);
 			this.render(load, code);
@@ -40,7 +41,7 @@ function($, _, Utils, page, StageView, EndView) {
 		
 		this.gameOver = function(point) {
 			this.stageView.pause = true;
-			
+			this.kongregateUtils.score("GameComplete", 1);
 			this.endView.render(point);
 			
 			$(".game").fadeOut();

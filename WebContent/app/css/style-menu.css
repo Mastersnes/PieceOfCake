@@ -123,3 +123,11 @@ ul.popup-menu > li:hover {
 .flag.en {
     background-image: url("../img/menu/flag/en.jpg");
 }
+
+/**
+* Kongregate
+**/
+.username {
+	position: absolute;
+	right: 0;
+}

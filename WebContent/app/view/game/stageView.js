@@ -15,6 +15,7 @@ function($, _, Utils, CinematiqueView, Stages, PlayerView) {
 			this.parent = parent;
 			this.mediatheque = parent.mediatheque;
 			this.pause = false;
+			this.kongregateUtils = parent.kongregateUtils;
 			this.player = new PlayerView(this);
 			this.player.difficulty = difficulty;
 		};
@@ -23,6 +24,10 @@ function($, _, Utils, CinematiqueView, Stages, PlayerView) {
 			$("#cinematique").show();
 			if (!this.cinematique) this.cinematique = new CinematiqueView(this.Textes);
 			this.map = Stages.get(lieu, stage);
+			
+			if (this.map.levelNumber) {
+				this.kongregateUtils.score("Level Complete", this.map.levelNumber);
+			}
 			
 			if (this.map.end) {
 				if (this.map.cinematique) {
@@ -116,6 +121,7 @@ function($, _, Utils, CinematiqueView, Stages, PlayerView) {
 				
 				if (player.flag.dead) {
 					player.flag.deathNb++;
+					this.kongregateUtils.score("Number of deaths", player.flag.deathNb);
 					this.mediatheque.playSound("/slurp.mp3");
 					player.flag.dead = false;
 					player.reset();

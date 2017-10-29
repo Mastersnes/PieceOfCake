@@ -5,6 +5,7 @@ define(["jquery",
 	
 	var data = {
 			"fin" : {
+				"levelNumber" : 4,
 				"end" : true,
 				"cinematique" : ["end1", "end2", "end3", "end4", "end5"],
 				"start" : {},

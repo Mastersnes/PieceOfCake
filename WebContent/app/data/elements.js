@@ -330,7 +330,7 @@ define(["jquery", "app/data/actions"], function($, Actions){
 				useY : function(player) {
 					var dom = this.dom;
 					if (!dom.attr("use")) {
-						player.flag.point++;
+						player.addPoint();
 						dom.attr("use", true);
 						dom.addClass("hidden");
 					}
@@ -338,7 +338,7 @@ define(["jquery", "app/data/actions"], function($, Actions){
 				useX : function(player) {
 					var dom = this.dom;
 					if (!dom.attr("use")) {
-						player.flag.point++;
+						player.addPoint();
 						dom.attr("use", true);
 						dom.addClass("hidden");
 					}

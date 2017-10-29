@@ -4,6 +4,14 @@ define(["jquery", "app/data/actions"], function($, Actions){
         /**
          * Plateformes
          */
+		"bienvenue" : {
+			fr : "Bienvenue",
+			en : "Wellcome"
+		},
+		"guest" : {
+			fr : "InvitÃ©",
+			en : "Guest"
+		},
         "newGame" : {
             fr : "Nouvelle partie",
             en : "New Game"
@@ -125,7 +133,7 @@ define(["jquery", "app/data/actions"], function($, Actions){
             en : "Let's try our others games on <a target='_blank' alt='Kongregate' href='http://www.kongregate.com/games/JeuxBebel'>Kongregate</a> !"
         },
         "end2" : {
-            fr : "Vous pouvez également nous soutenir sur <a target='_blank' alt='Tipeee' href='https://www.tipeee.com/les-jeux-de-bebel/'>Tipeee</a>.",
+            fr : "Vous pouvez ï¿½galement nous soutenir sur <a target='_blank' alt='Tipeee' href='https://www.tipeee.com/les-jeux-de-bebel/'>Tipeee</a>.",
             en : "You can also support us on <a target='_blank' alt='Tipeee' href='https://www.tipeee.com/les-jeux-de-bebel/'>Tipeee</a>."
         },
         "end3" : {

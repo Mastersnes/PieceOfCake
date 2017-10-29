@@ -9,12 +9,13 @@ define(["jquery",
 		 * Stages
 		 */
 		"1" : {
+			"levelNumber" : 2,
 			"music" : "/music/cuisine.mp3",
 			"gagne" : {lieu : "cuisine", stage: "2"},
 			"cinematique" : ["cuisine1", "cuisine2"],
 			"start" : {
 				x : 50,
-				y : 450
+				y : 400
 			},
 			"back" : [
 			  {id: "meuble", x: 100, y: 50},
@@ -42,6 +43,7 @@ define(["jquery",
 			}
 		},
 		"2" : {
+			"levelNumber" : 3,
 			"music" : "/music/cuisine.mp3",
 			"gagne" : {lieu : "fin", stage: "0"},
 			"cinematique" : null,

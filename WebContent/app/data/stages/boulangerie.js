@@ -9,6 +9,7 @@ define(["jquery",
 		 * Stages
 		 */
 		"1" : {
+			"levelNumber" : 0,
 			"music" : "/music/boulangerie.mp3",
 			"gagne" : {lieu : "boulangerie", stage : 2},
 			"cinematique" : ["cinematique-didactitiel", "boulangerie1", "boulangerie2", "boulangerie3", "boulangerie4"],
@@ -49,12 +50,13 @@ define(["jquery",
 			}
 		},
 		"2" : {
+			"levelNumber" : 1,
 			"music" : "/music/boulangerie.mp3",
 			"gagne" : {lieu : "cuisine", stage : 1},
 			"cinematique" : null,
 			"start" : {
 				x : 100,
-				y : 200
+				y : 150
 			},
 			"back" : [
 			  {id: "niche-vide2", x: 50, y: 200},
