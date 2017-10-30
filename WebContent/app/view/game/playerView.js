@@ -53,7 +53,11 @@ define(
 						this.position.x = this.save.position.x;
 						this.position.y = this.save.position.y;
 						this.flag.point = this.save.point;
+						this.stage.kongregateUtils.score("Love point !", this.flag.point);
+						
 						this.flag.deathNb = this.save.deathNb;
+						this.stage.kongregateUtils.score("Number of deaths", this.flag.deathNb);
+						
 						this.difficulty = this.save.difficulty;
 					}
 				};
