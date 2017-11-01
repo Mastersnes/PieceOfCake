@@ -25,8 +25,8 @@ define(["jquery", "kongregate"], function($){
 			$(".username").html(this.Textes.get("bienvenue") + " " + username);
 			
 			$(".username").removeClass("hidden");
-			if (isGuest) $("#login").show();
-			else $("#login").hide();
+			if (isGuest) $("#login").removeClass("hidden");
+			else $("#login").addClass("hidden");
 		};
 		
 		this.score = function(key, value) {

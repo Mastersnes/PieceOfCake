@@ -72,7 +72,7 @@ function($, _, Utils, Kongregate, Textes, Mediatheque, page, GameView, LoadView,
 	            	console.log('Kongregate username changed to: ' + that.kongregate.services.getUsername());
 	            	$(".username").html(that.kongregate.services.getUsername());
 	            	if (!that.kongregate.services.isGuest()) {
-	            		$("#login").hide();
+	            		$("#login").addClass("hidden");
 	            	}
 	            });
 				that.kongregate.services.showRegistrationBox();
