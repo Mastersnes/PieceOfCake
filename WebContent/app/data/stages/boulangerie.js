@@ -2,8 +2,7 @@
 define(["jquery", 
         "app/data/stages/boulangerie/facile", 
         "app/data/stages/boulangerie/moyen",
-        "app/data/stages/boulangerie/difficile",
-        "app/data/stages/boulangerie/hardcore"], function($, Facile, Moyen, Difficile, Hardcore){
+        "app/data/stages/boulangerie/difficile"], function($, Facile, Moyen, Difficile){
 	var data = {
 		/**
 		 * Stages
@@ -45,8 +44,7 @@ define(["jquery",
 			"elements" : {
 				"facile" : Facile.get("1"),
 				"moyen" : Moyen.get("1"),
-				"difficile" : Difficile.get("1"),
-				"hardcore" : Hardcore.get("1")
+				"difficile" : Difficile.get("1")
 			}
 		},
 		"2" : {
@@ -87,8 +85,7 @@ define(["jquery",
 			"elements" : {
 				"facile" : Facile.get("2"),
 				"moyen" : Moyen.get("2"),
-				"difficile" : Difficile.get("2"),
-				"hardcore" : Hardcore.get("2")
+				"difficile" : Difficile.get("2")
 			}
 		}
 	};

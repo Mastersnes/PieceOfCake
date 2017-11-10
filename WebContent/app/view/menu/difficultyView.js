@@ -30,7 +30,7 @@ function($, _, Utils, page) {
 			$(this.el).find(".close").click(function() {
 				$(that.el).hide("slow");
 			});
-			$("#facile, #moyen, #difficile, #hardcore").click(function() {
+			$("#facile, #moyen, #difficile").click(function() {
 				var type = $(this).attr("id");
 				that.menu.newGame(type);
 			});
