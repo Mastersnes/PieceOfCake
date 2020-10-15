@@ -1,5 +1,5 @@
 # Piece of cake - Une part de gateau
-"Piece of cake" est un jeu par navigateur gratuit et sans attentes intempestives : http://lesjeuxdebebel.fr.nf/PieceOfCake
+"Piece of cake" est un jeu par navigateur gratuit et sans attentes intempestives : https://www.kongregate.com/games/jeuxbebel/piece-of-cake
 Qui a été dévellopé à l'issus de la Short and Sweet Jam de itch.io : https://itch.io/jam/shortnsweet
 
 Il s'agit d'un jeu de plateforme dans lequel le joueur incarnera un petit garcon cherchant à trouver le gateau idéal pour son amoureuse.
