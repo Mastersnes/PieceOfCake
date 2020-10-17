@@ -16,7 +16,6 @@ define(["jquery"], function($){
 			  //AU DESSUS
 			  {id: "eclair-cafe", x: 850, y: 300},
 			  {id: "eclair-vanille", x: 1050, y: 300},
-			  {id: "fraise", x: 1100, y: 270, vitesse : 2, descente : 4},
 			  {id: "coeur", x: 1160, y: 270},
 			  {id: "citron", x: 1200, y: 270, vitesse : 3, descente : 3},
 			  {id: "eclair-choco", x: 1250, y: 300},
@@ -52,7 +51,6 @@ define(["jquery"], function($){
 			  {id: "fraise", x: 3450, y: 400, vitesse : 5, descente : 3},
 			  {id: "choux", x: 3500, y: 450, vitesse : 2},
 			  {id: "coeur", x: 3660, y: 430},
-			  {id: "citron", x: 3650, y: 450, vitesse : 4, descente : 5, distance : 150},
 			  {id: "choux", x: 3700, y: 400, vitesse : 4},
 			  {id: "fraise", x: 3850, y: 400, vitesse : 3, descente : 2, distancee : 150},
 			  {id: "choux", x: 3900, y: 350, vitesse : 2},
