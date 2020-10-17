@@ -9,9 +9,6 @@
 .plan.background.boulangerie {
 	background-image: url("../img/game/boulangerie/background.jpg");	
 }
-.plan.frontground.boulangerie {
-	background-image: url("../img/game/boulangerie/frontground.png");	
-}
 
 /**
 * Element d'arriere plan
@@ -260,13 +257,10 @@
 }
 
 /**
-* Boulangerie
+* Cuisine
 **/
 .plan.background.cuisine {
 	background-image: url("../img/game/cuisine/background.jpg");	
-}
-.plan.frontground.cuisine {
-	background-image: url("../img/game/cuisine/frontground.png");	
 }
 
 /**
