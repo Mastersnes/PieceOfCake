@@ -53,7 +53,7 @@ function($, _, Utils, Kongregate, Textes, Mediatheque, page, GameView, LoadView,
 		this.makeEvents = function() {
 			var that = this;
 			$("#new").click(function() {
-			    that.newGame("hardcore");
+			    new DifficultyView(that, Textes).show();
 			});
 			$("#load").click(function() {
 				new LoadView(that, Textes).show();
