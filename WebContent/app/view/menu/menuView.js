@@ -20,6 +20,7 @@ function($, _, Utils, Kongregate, Textes, Mediatheque, page, GameView, LoadView,
 		    this.el = $("#app");
             this.mediatheque = new Mediatheque();
             this.mediatheque.play("/music/menu.mp3");
+            Textes.loadLanguage();
 			this.kongregateUtils = new Kongregate(Textes);
 			
 			var that = this;
@@ -35,6 +36,7 @@ function($, _, Utils, Kongregate, Textes, Mediatheque, page, GameView, LoadView,
 		};
 
 		this.render = function() {
+		var that = this;
 			_.templateSettings.variable = "data";
 			var template = _.template(page);
 			var templateData = {

@@ -18,11 +18,7 @@ define(["jquery"], function($){
 			  {id: "yahourt", x: 1850, y: 100},
 			  {id: "pate", x: 2200, y: 120},
 			  {id: "chocolat", x: 2400, y: 120},
-			  {id: "noisette1", x: 2450, y: 110, vitesse: 3, descente: 8},
-			  {id: "noisette2", x: 2470, y: 110, vitesse: 5, descente: 5},
-			  {id: "noisette3", x: 2490, y: 110, vitesse: 4, descente: 7},
-			  {id: "noisette4", x: 2510, y: 110, vitesse: 2, descente: 8},
-			  
+
 			  //AU DESSUS
 			  {id: "coeur", x: 2650, y: 50},
 			  {id: "rouleau", x: 2700, y: 130},

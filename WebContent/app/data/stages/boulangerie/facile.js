@@ -24,7 +24,6 @@ define(["jquery"], function($){
 			  {id: "coeur", x: 940, y: 450},
 			  {id: "eclair-fraise", x: 1050, y: 500},
 			  {id: "coeur", x: 1110, y: 470},
-			  {id: "fraise", x: 1150, y: 470, vitesse : 3, descente : 3},
 			  {id: "coeur", x: 1210, y: 470},
 			  {id: "eclair-fraise", x: 1250, y: 500},
 			  {id: "coeur", x: 1310, y: 470},
@@ -45,7 +44,6 @@ define(["jquery"], function($){
 			  //PARTIE 2
 			  {id: "coeur", x: 3270, y: 370},
 			  {id: "choux", x: 3300, y: 400, vitesse : 3},
-			  {id: "fraise", x: 3450, y: 400, vitesse : 5, descente : 3},
 			  {id: "choux", x: 3500, y: 450, vitesse : 2},
 			  {id: "coeur", x: 3660, y: 430},
 			  {id: "choux", x: 3700, y: 400, vitesse : 4},
@@ -95,7 +93,6 @@ define(["jquery"], function($){
 			  {id: "choux", x: 3400, y: 400, vitesse : 4},
 			  {id: "coeur", x: 3550, y: 380},
 			  {id: "eclair-vanille", x: 3600, y: 400},
-			  {id: "fraise", x: 3700, y: 380, vitesse : 2, descente : 3, distance : 150},
 			  {id: "eclair-choco", x: 3800, y: 350},
 			  {id: "citron", x: 3900, y: 340, vitesse : 3, descente : 2, distance : 150},
 			  {id: "eclair-vanille", x: 4000, y: 300},

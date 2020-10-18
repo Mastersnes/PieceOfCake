@@ -205,7 +205,7 @@ define(["jquery", "app/data/actions"], function($, Actions){
 				x : 0,
 				y : -10,
 				w : 200,
-				h : 20
+				h : 50
 			},
 			sound : "/ahh.mp3",
 			action : {}
